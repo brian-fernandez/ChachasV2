@@ -1,0 +1,57 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+        <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()" style="margin-right: 15px;">
+            <mat-icon *ngIf="!sidenav.opened">
+                menu
+            </mat-icon>
+            <mat-icon *ngIf="sidenav.opened">
+                close
+            </mat-icon>
+        </button>
+        <span>Admin</span>
+        <!-- <img src="" alt="" style="width: 150px;"> -->
+        <span class="example-spacer"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button (click)="cerrar()" mat-menu-item>
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+            </button>
+        </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" mode="side" opened class="mat-elevation-z8">
+
+        <h4 class="name">{{nombre | titlecase}}</h4>
+        <p *ngIf="decrypted == 'Administrador'" class="designation">Administrador</p>
+        <p *ngIf="decrypted == 'Publicador'" class="designation">Publicador</p>
+
+        <mat-divider></mat-divider>
+        <!-- <div *ngIf="decrypted == 'Administrador'"> -->
+            <div>
+            <button mat-button [routerLinkActive]="['class1']" routerLink="/home" class="menu-button">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+            </button>
+            <button mat-button [routerLinkActive]="['class1']" routerLink="/panel" class="menu-button">
+                <mat-icon>person</mat-icon>
+                <span>Users</span>
+            </button>
+        </div>
+        <!-- <div *ngIf="decrypted == 'Publicador'">
+            <button mat-button [routerLinkActive]="['class1']" routerLink="/home" class="menu-button">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+            </button>
+        </div> -->
+        <mat-divider></mat-divider>
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

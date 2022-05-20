@@ -1,0 +1,33 @@
+<div class="example-container ">
+    <p>Home</p>
+   <div class="row">
+       <div class="col-6 col-sm-4">
+        <mat-card class="example-card">
+            <mat-card-title-group>
+              <mat-card-title><strong>Bienvenido </strong>{{this.datos.Nombre}}</mat-card-title>
+              <mat-card-subtitle><strong>Apellido:</strong>{{this.datos.Apellido}}</mat-card-subtitle>
+              <mat-card-subtitle><strong>Carnet:</strong>{{this.datos.CI}}</mat-card-subtitle>
+              <mat-card-subtitle><strong>Fecha de nacimiento:</strong>{{this.datos.Fecha_nacimiento}}</mat-card-subtitle>
+             
+              <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+            </mat-card-title-group>
+            <mat-card-content>
+              
+            </mat-card-content>
+          </mat-card>
+       </div>
+       <div class="col-6 col-sm-4">
+        <mat-card class="example-card">
+            <mat-card-title-group>
+              <mat-card-title>Shiba Inu</mat-card-title>
+              <mat-card-subtitle>Small</mat-card-subtitle>
+              <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+            </mat-card-title-group>
+            <mat-card-content>
+              
+            </mat-card-content>
+          </mat-card>
+       </div>
+   </div>
+    <button (click)="ver()">ver</button>
+</div>

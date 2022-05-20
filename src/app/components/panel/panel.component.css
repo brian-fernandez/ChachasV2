@@ -1,0 +1,21 @@
+.example-container {
+    height: 90%;
+    overflow: auto;
+    padding: 25px;
+    width: 100%;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  .loader {
+    margin-top: 50px;
+    margin-left: 150px;
+  }
+  
