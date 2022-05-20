@@ -14,7 +14,7 @@ export class ServicesService {
 
 
 
-  path = 'http://localhost:80/chachasv1/chachas/src/app/servicesphp/';
+  path = 'http://localhost:80/git/ChachasV2/src/app/servicesphp/';
   idUsuario: any;
   items = [];
   accesToken: any;
