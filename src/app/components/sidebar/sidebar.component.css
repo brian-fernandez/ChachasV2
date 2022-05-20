@@ -7,17 +7,22 @@
   }
   
   mat-toolbar {
-    background: #3f51b5;
-    color: white;
+    
+
+  background: linear-gradient(60deg, #ffa726, #fb8c00);
+  color: white;
+  
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(255 152 0 / 40%);
   }
   
   mat-sidenav {
-    margin: 16px;
+    /* margin: 16px; */
     width: 200px;
     border-right: none;
-    background: #3f51b5;
+    /* background: #3f51b5; */
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
     color: white;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding: 16px;
     text-align: center;
   }

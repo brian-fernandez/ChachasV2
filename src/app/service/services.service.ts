@@ -94,4 +94,23 @@ AgregarEmpleado():Observable<any>{
     )
 
   }
+
+
+
+  /*Producto*/
+
+  obtenerdatosproducto():Observable<any>
+  {
+    return this.http.get(this.path+'obtproducto.php', this.httpOptions).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+  
 }

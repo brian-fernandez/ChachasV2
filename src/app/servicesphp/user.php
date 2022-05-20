@@ -11,6 +11,7 @@ class Pelicula extends DB{
     function obtenerPersonas(){
         $query = $this->connect()->query('SELECT * FROM usuario');
         return $query;
+       
         
     }
 
@@ -61,10 +62,26 @@ class Pelicula extends DB{
             return false;
         }
     }
+
+
+
+
+   /* PRODUCTOS */
+
+   function obtenercantidadproducto()
+   {
+        $query = $this->connect()->query('SELECT * FROM producto;');
+      
+           return $query;
+      
+   }
+
     }
 
   
 
+
+ 
 
 
 

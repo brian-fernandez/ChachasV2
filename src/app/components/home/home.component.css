@@ -1,21 +1,72 @@
 .example-container {
-    height: 90%;
-    overflow: auto;
-    padding: 25px;
-    width: 100%;
-  }
-  
-  table {
-    width: 100%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 100%;
-  }
-  
-  .loader {
-    margin-top: 50px;
-    margin-left: 150px;
-  }
-  
+  height: 90%;
+  overflow: auto;
+  padding: 25px;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.loader {
+  margin-top: 50px;
+  margin-left: 150px;
+}
+
+.tarjeta {
+  position: relative;
+}
+
+.icono-img {
+  position: absolute;
+  top: -30px;
+  left: 50px;
+  z-index: 100;
+}
+
+.divide {
+  margin-top: 50px;
+}
+
+.orange {
+  font-size: 48px;
+
+  background: linear-gradient(60deg, #ffa726, #fb8c00);
+  color: white;
+  padding: 15px;
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(255 152 0 / 40%);
+}
+.green
+{
+  font-size: 48px;
+  background: linear-gradient(60deg,#66bb6a,#43a047);
+  color: white;
+  padding: 15px;
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(76 175 80 / 40%);
+}
+.red{
+  font-size: 48px;
+  background: linear-gradient(60deg,#ef5350,#e53935);
+  color: white;
+  padding: 15px;
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(244 67 54 / 40%);
+}
+.purple
+{
+  font-size: 48px;
+  background: linear-gradient(60deg,#ab47bc,#8e24aa);
+  color: white;
+  padding: 15px;
+  box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(156 39 176 / 40%);
+}
+.modelar
+{
+  display: flex;
+  align-items: center;
+}

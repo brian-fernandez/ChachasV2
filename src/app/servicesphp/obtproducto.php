@@ -6,7 +6,7 @@ include_once 'api.php';
 
 $api = new ApiPeliculas();
 
-$api  = $api->getAll();
+$api  = $api->obtcanpro();
 
 
 

@@ -10,21 +10,32 @@ class ApiPeliculas{
         $peliculas["items"] = array();
 
         $res = $pelicula->obtenerPersonas();
+        
+       
+        if($res){
 
-        if($res->rowCount() == 1){
-            $row = $res->fetch();
 
-            $item=array(
-                "CI" => $row['CI'],
-                "Nombre" => $row['Nombre'],
-                "Contraseña" => $row['Contraseña'],
-                "Cargo_idCargo" => $row['Cargo_idCargo'],
-                "Apellido" => $row['Apellido'],    
-            );
-            array_push($peliculas["items"], $item);
-            $this->printJSON($peliculas);
+while ( $row = $res->fetch(PDO::FETCH_ASSOC) ) {
+    $item=array(
+        "CI" => $row['CI'],
+        "Nombre" => $row['Nombre'],
+        "Contraseña" => $row['Contraseña'],
+        "Cargo_idCargo" => $row['Cargo_idCargo'],
+        "Apellido" => $row['Apellido']  
+         
+    );
+    
+    array_push($peliculas["items"], $item);
+    $this->printJSON($peliculas);
+}
+
+          
+            
+
+            
             
         }else{
+            echo 'hola';
             echo json_encode(array('mensaje' => 'No hay elementos'));
         }
     }
@@ -85,10 +96,48 @@ function login($datos)
         array_push($peliculas["items"], $item,"Encontrado");
         $this->printJSON($peliculas);
     }else{
-        // echo json_encode(array('mensaje' => 'No hay elementos'));
+        echo json_encode(array('mensaje' => 'No hay elementos'));
     }
 
 }
+
+
+
+
+    function obtcanpro()
+    {
+        $pelicula = new Pelicula();
+
+        $peliculas["items"] = array();
+
+        $res = $pelicula->obtenercantidadproducto();
+        echo json_encode($res);
+
+        if($res)
+        {
+            $row = $res->fetch();
+    
+            $item=array(
+                "idProducto" => $row['idProducto'],
+                "Nombre" => $row['Nombre'],
+                "Foto" => $row['Foto'],
+                "Estado" => $row['Estado'],
+                "Cantidad" =>$row['Cantidad'],
+                "Precio" => $row['Precio'],
+                
+            );
+            
+            array_push($peliculas["items"], $item,"Encontrado");
+            $this->printJSON($peliculas);
+        }else{
+            echo json_encode(array('mensaje' => 'No hay elementos'));
+        }
+        
+    }
+
+
+
+
 
 
     function error($mensaje){
