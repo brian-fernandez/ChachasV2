@@ -1,6 +1,7 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,17 +13,24 @@ export class SidebarComponent implements OnInit {
   decrypted: any;
   nombre: any;
 
+token:any;
+
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
   constructor(
     // private EncrDecr: EncrDecrService,
-    private observer: BreakpointObserver
+    private observer: BreakpointObserver,
+    private router:Router
     
     ) {
     // this.decrypted = this.EncrDecr.get('123456$#@$^@1ERF', localStorage.getItem('log'));
     // this.nombre = localStorage.getItem('name');
   }
+
+
+ 
+
 
   ngAfterViewInit() {
     this.observer.observe(['(max-width: 1200px)']).subscribe((res) => {
@@ -37,7 +45,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+  
   }
 
   cerrar(): void {

@@ -8,9 +8,7 @@ import { Empleado } from './Empleados';
 })
 export class ServicesService {
 
-  Api = 'http://localhost:80/chachasv1/chachas/src/app/appphp/index.php';
-
-
+ 
 
 
 
@@ -28,6 +26,12 @@ export class ServicesService {
         // 'Authorization':'Bearer '+ this.accesToken
       }),
     };
+
+    this.httpOptions2 = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }),
+    };
     
   }
 
@@ -37,24 +41,7 @@ AgregarEmpleado():Observable<any>{
   return this.http.get(this.path,this.httpOptions);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  getUsers(): Observable<any> {
-    // this.accesToken = localStorage.getItem('access_token');
-   
-  
-    
+getUsers(): Observable<any> {
     return this.http.get(this.path+'obt.php', this.httpOptions).pipe(
       tap((data: any) =>  {
 
@@ -67,18 +54,10 @@ AgregarEmpleado():Observable<any>{
     );
   }
 
-
-
   loginuser(correo:any,password:any):Observable<any>
-
   {
-
-    this.httpOptions2 = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded',
-      }),
-    };
-    console.log('login');
+   
+   
     var body = 'ci=' + correo + '&contraseña=' + password + '';
     return this.http.post(this.path+'login.php',body,this.httpOptions2).pipe(
       tap((data:any)=>{
@@ -93,6 +72,27 @@ AgregarEmpleado():Observable<any>{
       })
     )
 
+  }
+
+  getiduser(id:any,password:any):Observable<any>
+  {
+
+
+    var body = 'ci=' + id + '';
+
+
+    return this.http.post(this.path+'getiduser.php',body,this.httpOptions2).pipe(
+      tap((data:any)=>{
+      
+        
+        return of(data);
+      }),
+      catchError((err)=>{
+        console.log(err);
+        
+        return throwError(err);
+      })
+    )
   }
 
 
@@ -112,5 +112,72 @@ AgregarEmpleado():Observable<any>{
       })
     );
   }
+
+  cambiarestadoproducto(id:any,opcion:any):Observable<any>
   
+  {
+
+    var body = 'id=' + id + '&opcion='+opcion+'';
+    return this.http.post(this.path+'cambiarestadoprod.php',body, this.httpOptions2).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+
+
+  getidproducto(id:any):Observable<any>
+  
+  {
+
+    var body = 'id=' + id +'';
+    return this.http.post(this.path+'obtidproducto.php',body, this.httpOptions2).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+
+    updateproducto(id:any,nombre:any,cantidad:any,precio:any,foto:any)
+    {
+      var body = 'id=' + id +'&nombre='+ nombre + '&precio='+precio+ '&cantidad='+cantidad+ '&foto='+foto+'';
+      return this.http.post(this.path+'updateproduct.php',body,this.httpOptions2).pipe(
+        tap((data: any) =>  {
+  
+         
+          return of(data);
+        }),
+        catchError((err) => {
+          return throwError(err);
+        })
+      );
+    }
+
+  /*  Reservas*/ 
+  
+  
+
+  obtenerreservas():Observable<any>
+  {
+    return this.http.get(this.path+'obtreservas.php', this.httpOptions).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
 }

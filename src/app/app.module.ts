@@ -12,6 +12,12 @@ import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.
 import { HomeComponent } from './components/home/home.component';
 import { MatTableModule } from '@angular/material/table';
 import { PanelComponent } from './components/panel/panel.component';
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CommonModule } from '@angular/common';
+import { editdialogcomp } from './components/panel/editdialog';
+import { ListaProductoComponent } from './components/lista-producto/lista-producto.component';
+import { modalproductocomoponente } from './components/lista-producto/modalproducto';
 
 @NgModule({
   declarations: [
@@ -19,7 +25,10 @@ import { PanelComponent } from './components/panel/panel.component';
     SidebarComponent,
     InicioSesionComponent,
     HomeComponent,
-    PanelComponent
+    PanelComponent,
+    editdialogcomp,
+    ListaProductoComponent,
+    modalproductocomoponente
   ],
   imports: [
     BrowserModule,
@@ -27,8 +36,12 @@ import { PanelComponent } from './components/panel/panel.component';
     BrowserAnimationsModule,
     AngularMaterialModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormsModule,
     ReactiveFormsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],

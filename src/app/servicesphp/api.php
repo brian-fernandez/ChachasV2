@@ -13,51 +13,62 @@ class ApiPeliculas{
         
        
         if($res){
+            
 
+            while ( $row = $res->fetch( ) ) {
+                
+                $item=array(
+                    "CI" => $row['CI'],
+                    "Nombre" => $row['Nombre'],
+                    "Contraseña" => $row['Contraseña'],
+                    "Cargo_idCargo" => $row['Cargo_idCargo'],
+                    "Apellido" => $row['Apellido'],  
+                    
+                );
 
-while ( $row = $res->fetch(PDO::FETCH_ASSOC) ) {
-    $item=array(
-        "CI" => $row['CI'],
-        "Nombre" => $row['Nombre'],
-        "Contraseña" => $row['Contraseña'],
-        "Cargo_idCargo" => $row['Cargo_idCargo'],
-        "Apellido" => $row['Apellido']  
-         
-    );
-    
-    array_push($peliculas["items"], $item);
-    $this->printJSON($peliculas);
-}
+                array_push($peliculas["items"], $item);
+            
+                
+            
+            }
 
           
-            
-
-            
+           return $this->printJSON($peliculas);        
+           
+        
             
         }else{
-            echo 'hola';
+            
             echo json_encode(array('mensaje' => 'No hay elementos'));
         }
     }
+#Uusuario
 
     function getById($id){
+       
         $pelicula = new Pelicula();
         $peliculas = array();
         $peliculas["items"] = array();
+        $ci = $id['ci'];
 
-        $res = $pelicula->obtenerPersona($id);
 
-        if($res->rowCount() == 1){
+     
+        $res = $pelicula->obtenerPersona($ci);
+        
+        if($res){
             $row = $res->fetch();
 
             $item=array(
-                "cod_id" => $row['cod_id'],
-                "nombre" => $row['nombre'],
-                "password" => $row['password'],
-                "cargo" => $row['cargo'],
-                "foto" =>$row['foto']
+                "CI" => $row['CI'],
+                "Nombre" => $row['Nombre'],
+                "Fecha_nacimiento" =>$row['Fecha_nacimiento'],
+                "Apellido" => $row['Apellido'],
+                "Foto" => $row['Foto'],
+                "Cargo" => $row['Cargo'],
+                
             );
-            array_push($peliculas["items"], $item);
+            
+            array_push($peliculas["items"], $item,"Encontrado");
             $this->printJSON($peliculas);
         }else{
             echo json_encode(array('mensaje' => 'No hay elementos'));
@@ -101,7 +112,7 @@ function login($datos)
 
 }
 
-
+//  Productos
 
 
     function obtcanpro()
@@ -111,12 +122,11 @@ function login($datos)
         $peliculas["items"] = array();
 
         $res = $pelicula->obtenercantidadproducto();
-        echo json_encode($res);
+        
 
         if($res)
         {
-            $row = $res->fetch();
-    
+            while ( $row = $res->fetch( ) ) {
             $item=array(
                 "idProducto" => $row['idProducto'],
                 "Nombre" => $row['Nombre'],
@@ -127,17 +137,181 @@ function login($datos)
                 
             );
             
-            array_push($peliculas["items"], $item,"Encontrado");
-            $this->printJSON($peliculas);
+            array_push($peliculas["items"], $item);
+        }
+          return  $this->printJSON($peliculas);
         }else{
             echo json_encode(array('mensaje' => 'No hay elementos'));
         }
         
     }
 
+    function cambiarestpro($idprod)
+    {
+        
+        $pelicula = new Pelicula();
+
+        $peliculas["items"] = array();
+        $idproducto = $idprod['id'];
+        $res = $pelicula->cambiardisponibilidad($idproducto);
+        
+
+        if($res)
+        {
+            while ( $row = $res->fetch( ) ) {
+                $item=array(
+                    "idProducto" => $row['idProducto'],
+                    "Nombre" => $row['Nombre'],
+                    "Foto" => $row['Foto'],
+                    "Estado" => $row['Estado'],
+                    "Cantidad" =>$row['Cantidad'],
+                    "Precio" => $row['Precio'],
+                    
+                );
+                
+                array_push($peliculas["items"], $item);
+        }
+        return  $this->printJSON($peliculas);
+    }else{
+            echo json_encode(array('mensaje' => 'No hay elementos'));
+        }
+    }
+
+    function cambiarestpro2($idprod)
+    {
+        
+        $pelicula = new Pelicula();
+
+        $peliculas["items"] = array();
+        $idproducto = $idprod['id'];
+        $res = $pelicula->cambiardisponibilidad2($idproducto);
+        
+
+        if($res)
+        {
+            while ( $row = $res->fetch( ) ) {
+                $item=array(
+                    "idProducto" => $row['idProducto'],
+                    "Nombre" => $row['Nombre'],
+                    "Foto" => $row['Foto'],
+                    "Estado" => $row['Estado'],
+                    "Cantidad" =>$row['Cantidad'],
+                    "Precio" => $row['Precio'],
+                    
+                );
+                
+                array_push($peliculas["items"], $item);
+        }
+        return  $this->printJSON($peliculas);
+    }else{
+            echo json_encode(array('mensaje' => 'No hay elementos'));
+        }
+    }
 
 
+    function getidproduct($id){
+       
+        $pelicula = new Pelicula();
+        $peliculas = array();
+        $peliculas["items"] = array();
+        $ci = $id['id'];
 
+
+     
+        $res = $pelicula->obtidproducto($ci);
+        
+        if($res){
+
+            while ( $row = $res->fetch( ) ) {
+                $item=array(
+                    "idProducto" => $row['idProducto'],
+                    "Nombre" => $row['Nombre'],
+                    "Foto" => $row['Foto'],
+                    "Estado" => $row['Estado'],
+                    "Cantidad" =>$row['Cantidad'],
+                    "Precio" => $row['Precio'],
+                    
+                );
+                
+                array_push($peliculas["items"], $item);
+        }
+        return  $this->printJSON($peliculas);
+          
+        }else{
+            echo json_encode(array('mensaje' => 'No hay elementos'));
+        }
+    }
+
+    function updateprodu($id){
+       
+        $pelicula = new Pelicula();
+        $peliculas = array();
+        $peliculas["items"] = array();
+       
+
+
+     
+        $res = $pelicula->actualizarproducto($id);
+        
+        if($res){
+
+            while ( $row = $res->fetch( ) ) {
+                $item=array(
+                    "idProducto" => $row['idProducto'],
+                    "Nombre" => $row['Nombre'],
+                    "Foto" => $row['Foto'],
+                    "Estado" => $row['Estado'],
+                    "Cantidad" =>$row['Cantidad'],
+                    "Precio" => $row['Precio'],
+                    
+                );
+                
+                array_push($peliculas["items"], $item);
+        }
+        return  $this->printJSON($peliculas);
+          
+        }else{
+            echo json_encode(array('mensaje' => 'No hay elementos'));
+        }
+    }
+
+
+/*reservas*/
+
+
+    function obtreservas()
+    {
+        $pelicula = new Pelicula();
+
+        $peliculas["items"] = array();
+       
+        $res = $pelicula->obtenerreservas();
+        
+
+        if($res)
+        {
+            while ( $row = $res->fetch( ) ) {
+            $item=array(
+                "idreserva" => $row['idreserva'],
+                "Fecha" => $row['Fecha'],
+                 "informacion" => $row['informacion'],
+                 "usuario" => $row['usuario'],
+                 "Producto" => $row['Producto'],
+                 "nombre_mesa" =>$row['nombre_mesa'],
+                 "cliente" => $row['cliente'],
+                
+            );
+            
+            array_push($peliculas["items"], $item);
+        }
+          return  $this->printJSON($peliculas);
+        }else{
+            echo json_encode(array('mensaje' => 'No hay elementos'));
+        }
+        
+    }
+
+/*mensajes*/ 
 
 
     function error($mensaje){

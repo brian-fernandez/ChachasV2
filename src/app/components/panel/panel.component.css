@@ -18,4 +18,32 @@
     margin-top: 50px;
     margin-left: 150px;
   }
-  
+  .avatar
+  {
+
+    width: 50%;
+    display: block;
+    margin: auto;
+    align-items: center;
+   
+
+    margin: -50px auto 0;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0;
+    box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0 rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+    max-width: 130px;
+    max-height: 130px;
+
+  }
+
+  .editfoto
+  {
+    position: relative;
+  }
+  .lapiz
+  {
+    position: relative;
+    left: 30px;
+    top: -25px;
+  }

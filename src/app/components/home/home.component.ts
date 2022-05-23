@@ -1,22 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import { Router } from '@angular/router';
 import { async } from 'rxjs';
 import { ServicesService } from 'src/app/service/services.service';
 
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface user{
+Apellido: any;
+CI: any;
+Cargo_idCargo:any;
+Contraseña: any;
+Fecha_nacimiento: any;
+Nombre: any;
+Foto:any;
+
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
- 
-];
+export interface PeriodicElement {
+  Fecha:any;
+  informacion:any;
+  usuario:any;
+  Producto:any;
+  nombre_mesa:any;
+  cliente:any;
+  idreserva:any
+}
+
+
 
 
 @Component({
@@ -26,67 +37,96 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class HomeComponent implements OnInit {
 
+  numero = 0;
 
-
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ['Fecha', 'informacion', 'usuario', 'Producto','nombre_mesa','cliente'];
+  
   datosproducto: any;
 
-  
-  constructor(public services:ServicesService) {
+  tamanoproducto: any;
+  foto: any;
+  token: any ;
+  datauser!: user;
+  datareserva: any | PeriodicElement;
+  dataSource?: any;
 
+  
+  constructor(
+    public services:ServicesService,
+    private router:Router
     
+    ) 
+  {
+
    }
-
-
-  
 
   datos:any;
 
   ngOnInit(): void {
     this.ver();
     this.obtproducto();
+    this.obtiduser();
+    this.obtenerreserva();
+  
+    
   }
 
+
+
+  
   ver()
   {
     this.datos = this.services.getUsers().subscribe(
       async data => {
-      
-        
-        this.datos = data.items[0]
-       
-        
-        console.log(this.datos);
-        
-        
+        this.datos = data.items;
+   
       }, err => {
         console.log(err);
 
       }
     );
-    
-   
-    
-
   }
 
   obtproducto()
   {
     this.datos = this.services.obtenerdatosproducto().subscribe(
       async data => {
-      
-        
-        this.datosproducto = data;
-       
-        
-        console.log(this.datosproducto);
+        this.datosproducto = data.items;
+ 
+          this.tamanoproducto = this.datosproducto.length;
+      }, err => {
+        console.log(err);
+      }
+    );
+  }
+  obtiduser()
+  {
+    var token = localStorage.getItem('ci');
+
+    this.services.getiduser(token,'s').subscribe(
+      async data => {
+        this.datauser = data.items[0];
+        console.log(this.datauser);
         
       }, err => {
         console.log(err);
-
       }
-    );
+    )
+  }
+
+  obtenerreserva()
+  {
+    
+    this.services.obtenerreservas().subscribe(
+      async data => {
+        this.datareserva = data.items;
+        this.dataSource = new MatTableDataSource(this.datareserva);
+        console.log(this.datareserva);
+        
+      }, err => {
+        console.log(err);
+      }
+    )
   }
 
 }

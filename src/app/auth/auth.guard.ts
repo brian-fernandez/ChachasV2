@@ -12,26 +12,24 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard {
-  // constructor(private router: Router,) { }
-  // canActivate(
-  //   next: ActivatedRouteSnapshot,
-  //   state: RouterStateSnapshot
-  // ): Observable<boolean> | Promise<boolean> | boolean {
-  //   if (localStorage.getItem('keylog')) {
-  //     var decrypted = localStorage.getItem('keylog');
-  //     if (decrypted) {
-  //       localStorage.clear();
-  //     } else {
-  //       if (localStorage.getItem('token')) {
-  //         return true;
-  //       } else {
-  //         localStorage.clear();
-  //       }
-  //     }
-  //   } else {
-  //     this.router.navigate(['/login']);
-  //     return false;
-  //   }
-  // }
+export class AuthGuard implements CanActivate {
+  constructor(private router: Router,) { }
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    if (localStorage.getItem('ci')) {
+     
+          return true;
+     
+      
+    }
+    else {
+      console.log('no entra');
+      
+      this.router.navigate(['/login']);
+      return false;
+    }
+    
+  }
 }

@@ -1,35 +1,29 @@
-<div class="example-container ">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Weight </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-        </ng-container>
-      
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      
+
+
+<div class="example-container">
+  <div  class="row p-5">
+  
+    <div  class="col-md-4">
+      <div  class="card card-profile">
+        <div  class="card-avatar"><a  href="javascript:void(0)"><img
+               class="avatar" src="{{datauser?.Foto}}"></a></div>
+        <div  class="card-body">
+          <h6  class="card-category text-gray text-center">{{datauser?.Cargo}}</h6>
+          <h4  class="card-title text-center">{{datauser?.Nombre}} {{datauser?.Apellido}}</h4>
+          <mat-list>
+            <mat-list-item><strong>Fecha de Nacimiento</strong>: {{datauser?.Fecha_nacimiento}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item><strong>Carnet</strong>:{{datauser?.CI}}</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item> <mat-card-actions>
+              <button mat-raised-button color="warn" (click)="editar(datauser?.CI)"><span class="material-icons">
+                edit
+                </span> Editar</button>
+            </mat-card-actions></mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

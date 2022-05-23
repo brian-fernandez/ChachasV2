@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  td, th {
+    width: 25%;
+  }
+  .noty
+  {
+      background-color: green;
+      padding: 5px;
+      color: aliceblue;
+      border-radius: 10px;
+  }
+
+  .md-18 { font-size: 18px; }
+  .col-id
+  {
+      width: 10px;
+  }
+  .iconbtn{
+      cursor: pointer;
+  }
+
+  .lapiz
+  {
+    position: relative;
+    left: 30px;
+    top: -25px;
+  }

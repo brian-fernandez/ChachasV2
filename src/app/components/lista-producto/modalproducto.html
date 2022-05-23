@@ -1,0 +1,84 @@
+
+
+
+
+
+<form [formGroup]="lg" class="example-form">
+    <div mat-dialog-content>
+        <!-- <mat-form-field style="width: 100%;">
+            <mat-label>Carnet de identidad</mat-label>
+            <input matInput    placeholder="{{datauser?.id}} formControlName="ci">
+            
+        </mat-form-field> -->
+        <div class="editfoto">
+            <img src="{{dataproducto?.Foto}}" alt="" style="width: 70%;
+        display: block;
+        align-items: center;
+        margin: -50px auto 0;
+        border-radius: 0% !important;
+        overflow: hidden;
+        padding: 0;
+        box-shadow: 0 16px 38px -12px rgb(0 0 0 / 56%), 0 4px 25px 0 rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+        max-width: 130px;
+        max-height: 129px;
+        margin: auto;" class="avatar" width="">
+
+
+        <button *ngIf="!cambio; else end" class="lapiz" (click)="compressFile(1)" mat-mini-fab color="primary" aria-label="Example icon button with a menu icon"  accept=".png, .jpg, .jpeg">
+            <mat-icon>edit</mat-icon>
+        </button>
+
+        <ng-template #end>
+            <button  class="lapiz" (click)="removerfoto()" mat-mini-fab color="accent" aria-label="Example icon button with a menu icon" accept=".png, .jpg, .jpeg">
+            <mat-icon>restart_alt</mat-icon>
+        </button>
+        </ng-template>
+       
+        </div>
+
+
+   
+        <mat-form-field style="width: 100%;">
+            <mat-label>Nombre</mat-label>
+            <input matInput maxlength="25" type="text" placeholder="{{dataproducto?.Nombre}}" formControlName="Nombre">
+
+
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+            <mat-label>Cantidad</mat-label>
+            <input matInput maxlength="25" type="text" placeholder="{{dataproducto?.Cantidad}}" formControlName="Cantidad">
+
+
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+            <mat-label>Precio</mat-label>
+            <input matInput maxlength="25" type="text" placeholder="{{dataproducto?.Precio}}" formControlName="Precio">
+            <span matPrefix>Bs&nbsp;</span>
+
+        </mat-form-field>
+
+
+        <!-- <mat-form-field style="width: 100%;" appearance="fill">
+            <mat-label>Rol</mat-label>
+            <mat-select formControlName="tipo">
+                <mat-option value="Administrador">Administrador</mat-option>
+                <mat-option value="Publicador">Publicador</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-label style="color: red; size: 10;">*Cambiar contraseña no es obligatorio</mat-label>
+        <mat-form-field style="width: 100%;">
+            <mat-label>Nueva Contraseña</mat-label>
+            <input matInput type="password" autocomplete="new-password" placeholder="Nueva Contraseña"
+                formControlName="password">
+        </mat-form-field>
+    -->
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button>Cancelar</button>
+        <button class="btn-block" (click)="actualizar();" >
+            Editar
+          
+        </button>
+    </div>
+</form>

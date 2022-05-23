@@ -70,26 +70,19 @@ export class InicioSesionComponent implements OnInit {
           });
 
           this.datos = data.items[0];
-          console.log(this.datos);
+          if (this.datos) {
+            console.log('entro');
+            
+            localStorage.setItem('ci', this.datos.CI);
+            console.log(this.datos);
+          }
+         
+          
         }
         
-        // var enc = this.EncrDecr.set('123456$#@$^@1ERF', data.data.id);
-         localStorage.setItem('ci', this.datos.CI);
-        // localStorage.setItem('name', data.data.name);
-        // this.token = data.token;
-        // localStorage.setItem('token', this.token);
-        // var tipo = this.EncrDecr.set('123456$#@$^@1ERF', data.data.tipo);
-        // localStorage.setItem('log', tipo);
-        // this._snackBar.open('Bienvenido', 'Close', {
-        //   duration: 2000,
-        //   verticalPosition: 'top',
-        //   horizontalPosition: 'start'
-        // });
-        // if (data.data.tipo == 'Administrador') {
-          // this.router.navigate(['/home']);
-        // } else {
-        //   this.router.navigate(['/inmuebles']);
-        // }
+       
+           this.router.navigate(['/home']);
+ 
 
       }, err => {
         console.log(err);

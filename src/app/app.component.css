@@ -1,0 +1,7 @@
+.example-container {
+    height: 90%;
+    overflow: auto;
+    padding: 25px;
+    width: 100%;
+  }
+  

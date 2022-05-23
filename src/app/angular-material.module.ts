@@ -68,7 +68,9 @@ const materialModules = [
     MatTooltipModule,
     MatDialogModule,
     MatNativeDateModule,
-    MatStepperModule
+    MatStepperModule,
+    MatFormFieldModule,
+  
 ];
 
 @NgModule({

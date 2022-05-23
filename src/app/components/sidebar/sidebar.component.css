@@ -39,6 +39,7 @@
   
     font-size: 2rem;
     color: lightgray;
+    margin-top:10px;
   }
   
   mat-sidenav-container {
@@ -51,7 +52,7 @@
     align-items: center;
     justify-content: flex-start;
     font-size: 1rem;
-  
+  margin-top: 10px;
     
   }
   

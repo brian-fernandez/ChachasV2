@@ -5,6 +5,10 @@ import { AuthGuard } from './auth/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { PanelComponent } from './components/panel/panel.component';
 import { InicioSesionComponent } from './components/inicio-sesion/inicio-sesion.component';
+import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
+import { ListaMesasComponent } from './components/lista-mesas/lista-mesas.component';
+import { ListaClienteComponent } from './components/lista-cliente/lista-cliente.component';
+import { ListaProductoComponent } from './components/lista-producto/lista-producto.component';
 
 
 
@@ -13,10 +17,12 @@ const routes: Routes = [
   {
     path: '', component: SidebarComponent,
     children: [
-      { path: 'home', component: HomeComponent, },
-      { path: 'panel', component: PanelComponent },
-      // {path: 'nav', component: NavComponent,},
-      // {path: 'footer', component: FooterComponent,},
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+      { path: 'panel', component: PanelComponent,canActivate: [AuthGuard] },
+      {path: 'lista-reservas', component:ListaReservasComponent , canActivate:[AuthGuard]},
+      {path: 'lista-mesa', component: ListaMesasComponent, canActivate:[AuthGuard]},
+      {path: 'lista-cliente', component: ListaClienteComponent, canActivate:[AuthGuard]},
+      {path: 'lista-producto', component: ListaProductoComponent, canActivate:[AuthGuard]},
       // {path: 'restaurante/:idproducto', component: RestaurantComponent},
       // {path: 'restaurante', component:RestaurantComponent},
       // {path: 'habitacion', component:RoomsComponent},
