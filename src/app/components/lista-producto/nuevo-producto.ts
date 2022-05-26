@@ -17,11 +17,11 @@ export interface DialogData {
 }
 
 @Component({
-    selector: 'modalproducto',
-    templateUrl: 'modalproducto.html',
+    selector: 'nuevo-producto',
+    templateUrl: 'nuevo-producto.html',
     styleUrls: ['./lista-producto.component.css']
 })
-export class modalproductocomoponente {
+export class nuevoproductocomponent {
     lg: FormGroup;
     loading = { 1: false, 2: false, 3: false, 4: false };
     selected: any;
@@ -33,10 +33,11 @@ export class modalproductocomoponente {
     dataproducto: any;
     dataactulizado: any;
     foto: any;
+    datosnuevo: any;
 
 
     constructor(
-        public dialogRef: MatDialogRef<modalproductocomoponente>,
+        public dialogRef: MatDialogRef<nuevoproductocomponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
         private formBuilder: FormBuilder,
         private _snackBar: MatSnackBar,
@@ -55,10 +56,8 @@ export class modalproductocomoponente {
             Cantidad: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
             Precio: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
         });
-        // this.lg.controls['ci'].setValue(this.datauser.id);
-        this.lg.controls['Nombre'].setValue(this.dataproducto.Nombre);
-        this.lg.controls['Cantidad'].setValue(this.dataproducto.Cantidad);
-        this.lg.controls['Precio'].setValue(this.dataproducto.Precio);
+
+
 
 
     }
@@ -111,33 +110,32 @@ export class modalproductocomoponente {
         this.cambio = false;
     }
 
-    
-    actualizar() {
-
-
-        this.service.updateproducto(
-            this.dataproducto.Id,
+    anadir() {
+        this.service.creacionproducto(
             this.lg.value.Nombre,
             this.lg.value.Cantidad,
             this.lg.value.Precio,
-            this.dataproducto.Foto).subscribe(
-                async data => {
-                    this.dataactulizado = data;
-                    console.log(this.dataactulizado);
+            this.dataproducto.Foto
+        ).subscribe(
+            async data => {
+                this.datosnuevo = data;
+
+                this._snackBar.open('Producto creado', 'Close', {
+                    duration: 5000,
+                    verticalPosition: 'bottom',
+                    horizontalPosition: 'start'
+                });
+
+                console.log(this.datosnuevo);
+
+                this.dialogRef.close();
 
 
-                    this.dialogRef.close();
 
-                    this._snackBar.open('Datos editados', 'Close', {
-                        duration: 5000,
-                        verticalPosition: 'bottom',
-                        horizontalPosition: 'start'
-                      });
-                }, err => {
-                    console.log(err);
-                }
-            )
-
-
+            }, err => {
+                console.log(err);
+            }
+        );
     }
+
 }

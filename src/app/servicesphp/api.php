@@ -254,7 +254,7 @@ function login($datos)
         $res = $pelicula->actualizarproducto($id);
         
         if($res){
-
+               
             while ( $row = $res->fetch( ) ) {
                 $item=array(
                     "idProducto" => $row['idProducto'],
@@ -274,6 +274,70 @@ function login($datos)
             echo json_encode(array('mensaje' => 'No hay elementos'));
         }
     }
+
+    function elimiarproduct($id){
+       
+        $pelicula = new Pelicula();
+        $peliculas = array();
+        $peliculas["items"] = array();
+       
+
+
+     
+        $res = $pelicula->deletedproduct($id);
+        
+        if($res){
+               
+            while ( $row = $res->fetch( ) ) {
+                $item=array(
+                    "idProducto" => $row['idProducto'],
+                    "Nombre" => $row['Nombre'],
+                    "Foto" => $row['Foto'],
+                    "Estado" => $row['Estado'],
+                    "Cantidad" =>$row['Cantidad'],
+                    "Precio" => $row['Precio'],
+                    
+                );
+                
+                array_push($peliculas["items"], $item);
+        }
+        return  $this->printJSON($peliculas);
+          
+        }else{
+            echo json_encode(array('mensaje' => 'No hay elementos'));
+        }
+    }
+
+    function createproduct($id){
+       
+        $pelicula = new Pelicula();
+        $peliculas = array();
+        $peliculas["items"] = array();
+       
+
+
+     
+        $res = $pelicula->crearproducto($id);
+        
+        if($res){
+               
+            
+               
+            $item=array(
+                "creado" => "creado",
+             
+            );
+
+                
+         array_push($peliculas["items"], $item);
+        
+        return  $this->printJSON($peliculas);
+          
+        }else{
+            echo json_encode(array('mensaje' => 'No hay elementos'));
+        }
+    }
+
 
 
 /*reservas*/
@@ -310,6 +374,31 @@ function login($datos)
         }
         
     }
+/*Mesas */
+
+
+function gettable(){
+    $pelicula = new Pelicula();
+    $peliculas["items"] = array();
+    $res = $pelicula->obtmesas();
+    if($res){
+        while ( $row = $res->fetch( ) ) {
+            
+            $item=array(
+                "idMesa" => $row['idMesa'],
+                "Nombre" => $row['Nombre'],
+                "Estado" => $row['Estado'],
+                
+            );
+            array_push($peliculas["items"], $item);
+        }
+       return $this->printJSON($peliculas);        
+    }else{  
+        echo json_encode(array('mensaje' => 'No hay elementos'));
+    }
+}
+
+
 
 /*mensajes*/ 
 

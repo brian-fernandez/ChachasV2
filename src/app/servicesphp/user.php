@@ -112,18 +112,64 @@ class Pelicula extends DB{
 
    function actualizarproducto($datos)
    {
-    //    echo json_encode($datos);
+   
        $query = $this->connect()->prepare('UPDATE producto SET Cantidad = :cantidad,    Precio = :precio,     Foto = :foto,     Nombre =:nombre    WHERE idProducto = :id;');
        
     
        $query->execute(['cantidad' => $datos['cantidad'] ,'precio' => $datos['precio'], 'foto' => $datos['foto'], 'nombre' => $datos['nombre'], 'id' => $datos['id']]);
    
-     
-        return $query;
+       
         
-  
+        
+        if ($query->rowCount()) {
+        
+            return $query;
+            
+        }else{
+            
+            return false;
+        }
    } 
 
+   function crearproducto($datos)
+   {
+    
+ 
+    $query = $this->connect()->prepare('INSERT INTO producto (`idProducto`, `Nombre`, `Foto`, `Estado`, `Cantidad`, `Precio`) VALUES (NULL, :nombre, :foto, "Activo", :cantidad, :precio)');
+    $query->execute(['cantidad' => $datos['cantidad'] ,'precio' => $datos['precio'], 'foto' => $datos['foto'], 'nombre' => $datos['nombre']]);
+
+     if ($query->rowCount()) {
+     
+         return $query;
+         
+     }else{
+         
+         return false;
+     }
+
+}
+
+   /*ELIMINAR PRODUCTO*/
+   function deletedproduct($datos)
+   {
+   
+       $query = $this->connect()->prepare('DELETE FROM producto WHERE idProducto = :id');
+       $query->execute(['id' => $datos['id'] ]);
+   
+       
+        
+        
+        if ($query->rowCount()) {
+        
+            return $query;
+            
+        }else{
+            
+            return false;
+        }
+   } 
+   
+  
 
 
 
@@ -137,10 +183,15 @@ class Pelicula extends DB{
 
 
   
- 
+ /** MESAS */
  
 
-
+ function obtmesas(){
+    $query = $this->connect()->query('SELECT * FROM mesa');
+    return $query;
+   
+    
+}
 
 }
 ?>

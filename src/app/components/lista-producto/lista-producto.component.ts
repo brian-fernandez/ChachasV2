@@ -7,6 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ServicesService } from 'src/app/service/services.service';
 import { modalproductocomoponente } from './modalproducto';
+import { nuevoproductocomponent } from './nuevo-producto';
 
 
 export interface PeriodicElement {
@@ -38,6 +39,7 @@ export class ListaProductoComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort | any;
   dataidpro: any;
+  datoseliminados: any;
 
   constructor(private services: ServicesService,
     private _snackBar: MatSnackBar,
@@ -50,26 +52,16 @@ export class ListaProductoComponent implements OnInit {
    
   }
   ngAfterViewInit() {
-
+    this.datosproducto();
   }
 
   obtproducto() {
     this.services.obtenerdatosproducto().subscribe(
       async data => {
-        this.datosproducto = data.items;
-
-        // for (let index = 0; index < this.datosproducto.length; index++) {
-        //   this.datosproducto[index].Foto = this.sanitizer.bypassSecurityTrustResourceUrl('data:image/jpeg;base64,' + this.datosproducto[index].Foto);
-          
-        // }
-     
-        
-     
+        this.datosproducto = data.items; 
         this.dataSource = new MatTableDataSource(this.datosproducto);
-
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-       
         this.tamanoproducto = this.datosproducto.length;
       }, err => {
         console.log(err);
@@ -119,9 +111,11 @@ export class ListaProductoComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed');
-
-        });
+            console.log('hola');
+            
+          this.obtproducto();
+        }
+        );
       }, err => {
         console.log(err);
       }
@@ -167,6 +161,8 @@ export class ListaProductoComponent implements OnInit {
         this.obtproducto();
         console.log(this.datosproducto);
 
+        
+
       }, err => {
         console.log(err);
       }
@@ -174,10 +170,44 @@ export class ListaProductoComponent implements OnInit {
   }
 
 
-  eliminar() {
+  eliminar(id:any) {
+this.services.eliminarproducto(id).subscribe(
+  async data => {
+    this.datoseliminados = data;
 
+    this._snackBar.open('Producto eliminado', 'Close', {
+      duration: 5000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'start'
+    });
+    this.obtproducto();
+    console.log(this.datoseliminados);
+
+    
+
+  }, err => {
+    console.log(err);
+  }
+);
   }
 
+
+anadir()
+{
+  const dialogRef = this.dialog.open(nuevoproductocomponent, {
+    width: '50%', height:'400px',
+    data: {
+      mode: 'Nuevo',
+    
+    },
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('hola');
+    
+  this.obtproducto();
+}
+);
+}
 
  
 }

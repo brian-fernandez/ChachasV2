@@ -1,0 +1,25 @@
+.md-24 {
+    font-size: 74px !important;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sub
+{
+   
+    color: aliceblue;
+    font-weight: 300;
+    background: linear-gradient(60deg,#66bb6a,#43a047);
+    color: white;
+    padding: 5px;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(76 175 80 / 40%);
+}
+.sub-error
+{
+    font-weight: 300;
+    background: linear-gradient(60deg,#ef5350,#e53935);
+    color: white;
+    padding: 5px;
+    box-shadow: 0 4px 20px 0 rgb(0 0 0 / 14%), 0 7px 10px -5px rgb(244 67 54 / 40%);
+}

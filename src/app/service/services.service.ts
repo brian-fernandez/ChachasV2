@@ -18,6 +18,7 @@ export class ServicesService {
   accesToken: any;
   httpOptions?: { headers: HttpHeaders } ;
   httpOptions2?: { headers: HttpHeaders; };
+  url: any;
   
   constructor(private http:HttpClient) { 
     this.httpOptions = {
@@ -148,7 +149,7 @@ getUsers(): Observable<any> {
     );
   }
 
-    updateproducto(id:any,nombre:any,cantidad:any,precio:any,foto:any)
+    updateproducto(id:any,nombre:any,cantidad:any,precio:any,foto:any):Observable<any>
     {
       var body = 'id=' + id +'&nombre='+ nombre + '&precio='+precio+ '&cantidad='+cantidad+ '&foto='+foto+'';
       return this.http.post(this.path+'updateproduct.php',body,this.httpOptions2).pipe(
@@ -163,6 +164,49 @@ getUsers(): Observable<any> {
       );
     }
 
+    eliminarproducto(id:any):Observable<any>
+    {
+    
+      
+      var body = 'id=' + id;
+
+      this.url = this.path+'eliminarproducto.php?'+body;
+     
+      
+      
+      return this.http.delete(this.url,this.httpOptions2).pipe(
+        tap((data: any) =>  {
+  
+         
+          return of(data);
+        }),
+        catchError((err) => {
+          return throwError(err);
+        })
+      );
+    }
+
+    
+    creacionproducto(nombre:any,cantidad:any,precio:any,foto:any):Observable<any>
+    {
+    
+      
+      var body = 'nombre='+ nombre + '&precio='+precio+ '&cantidad='+cantidad+ '&foto='+foto+'';
+      return this.http.post(this.path+'creacionproducto.php',body,this.httpOptions2).pipe(
+        tap((data: any) =>  {
+  
+         
+          return of(data);
+        }),
+        catchError((err) => {
+          return throwError(err);
+        })
+      );
+    }
+
+
+    
+
   /*  Reservas*/ 
   
   
@@ -170,6 +214,22 @@ getUsers(): Observable<any> {
   obtenerreservas():Observable<any>
   {
     return this.http.get(this.path+'obtreservas.php', this.httpOptions).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+  /*  mesas* */
+
+  obtmesas():Observable<any>
+  {
+    
+    return this.http.get(this.path+'mesa.php?opcion=ver', this.httpOptions).pipe(
       tap((data: any) =>  {
 
        

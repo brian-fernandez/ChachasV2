@@ -1,1 +1,52 @@
-<p>lista-mesas works!</p>
+<div class="example-container">
+    <div class="row p-3">
+        <div class="col-sm-12">
+            <button mat-raised-button color="warn" (click)="anadir()">Añadir nueva mesa</button>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col col-sm-3" *ngFor="let mesas of datosmesas">
+                        <mat-card class="example-card">
+                            <span class="material-icons md-24">
+                                table_bar
+                            </span>
+
+                            <mat-card-content style="text-align:center ;">
+                                <mat-card-title>{{mesas.Nombre}}</mat-card-title>
+                                <mat-card-subtitle class="sub" *ngIf="mesas.Estado == 'Sin Reserva'; else els">
+                                    {{mesas.Estado}}</mat-card-subtitle>
+                                <ng-template #els>
+                                    <mat-card-subtitle class="sub-error">{{mesas.Estado}}</mat-card-subtitle>
+                                </ng-template>
+                            </mat-card-content>
+                            <mat-card-actions
+                                style="text-align:center ; text-align: center; display: flex; justify-content: space-between;">
+                                <button mat-stroked-button color="primary"
+                                    *ngIf="mesas.Estado == 'Sin Reserva'; else reserv" (click)="reservar(mesas)">Reservar</button>
+
+                                <ng-template #reserv>
+
+                                    <button mat-stroked-button color="accent">Finalizar reserva</button>
+                                </ng-template>
+
+
+                                <button mat-stroked-button color="warn" style="text-align:center ; text-align: center; display: flex; justify-content: space-between;">
+                                    <span class="material-icons" style="font-size:17px ;">
+                                        delete
+                                    </span>eliminar</button>
+
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

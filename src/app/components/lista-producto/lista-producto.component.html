@@ -1,7 +1,7 @@
 <div class="example-container">
     <div class="row p-3">
         <div class="col-sm-12">
-            <button mat-raised-button color="warn">Añadir nuevo producto</button>
+            <button mat-raised-button color="warn" (click)="anadir()">Añadir nuevo producto</button>
         </div>
 
     </div>
@@ -60,7 +60,7 @@
                                     <mat-icon  matTooltip="Cambiar estado"  class="iconbtn" aria-hidden="false" (click)="cambiarinactivo(row.idProducto);">restaurant</mat-icon>
                                 </ng-template>
 
-                                <mat-icon  matTooltip="Eliminar" class="iconbtn" aria-hidden="false" aria-label="Example home icon" (click)="eliminar();">deleted</mat-icon>
+                                <mat-icon  matTooltip="Eliminar" class="iconbtn" aria-hidden="false" aria-label="Example home icon" (click)="eliminar(row.idProducto);">deleted</mat-icon>
                             
                             </div>
 

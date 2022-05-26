@@ -18,6 +18,9 @@ import { CommonModule } from '@angular/common';
 import { editdialogcomp } from './components/panel/editdialog';
 import { ListaProductoComponent } from './components/lista-producto/lista-producto.component';
 import { modalproductocomoponente } from './components/lista-producto/modalproducto';
+import { nuevoproductocomponent } from './components/lista-producto/nuevo-producto';
+import { ListaMesasComponent } from './components/lista-mesas/lista-mesas.component';
+import { reservarmesacomponete } from './components/lista-mesas/reservar-mesa';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { modalproductocomoponente } from './components/lista-producto/modalprodu
     PanelComponent,
     editdialogcomp,
     ListaProductoComponent,
-    modalproductocomoponente
+    modalproductocomoponente,
+    nuevoproductocomponent,
+    ListaMesasComponent,
+    reservarmesacomponete
   ],
   imports: [
     BrowserModule,
