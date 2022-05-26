@@ -21,6 +21,7 @@ import { modalproductocomoponente } from './components/lista-producto/modalprodu
 import { nuevoproductocomponent } from './components/lista-producto/nuevo-producto';
 import { ListaMesasComponent } from './components/lista-mesas/lista-mesas.component';
 import { reservarmesacomponete } from './components/lista-mesas/reservar-mesa';
+import { nuevoclientecomponent } from './components/lista-cliente/nuevlo-cliente';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { reservarmesacomponete } from './components/lista-mesas/reservar-mesa';
     modalproductocomoponente,
     nuevoproductocomponent,
     ListaMesasComponent,
-    reservarmesacomponete
+    reservarmesacomponete,
+    nuevoclientecomponent
   ],
   imports: [
     BrowserModule,

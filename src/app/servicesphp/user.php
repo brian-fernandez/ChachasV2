@@ -67,6 +67,21 @@ class Pelicula extends DB{
         return $query;
     } 
 
+
+    /* Clientes */
+
+    function obtclientes(){
+        $query = $this->connect()->query('SELECT * FROM cliente');
+        return $query; 
+    }
+
+    function crearcliente($datos)
+    {
+        $query = $this->connect()->prepare('INSERT INTO cliente (`idcliente`, `Nombre`, `Apellido`, `CI`) VALUES (NULL, :nombre, :apellido, :carnet);');
+        $query->execute(['nombre' => $datos['nombre'] ,'apellido' => $datos['apellido'], 'carnet' => $datos['carnet']]);
+        return $query;
+    }
+
    /* PRODUCTOS */
 
    function obtenercantidadproducto()

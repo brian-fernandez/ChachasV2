@@ -240,4 +240,35 @@ getUsers(): Observable<any> {
       })
     );
   }
+
+  /* CLIENTES*/
+  
+  getclientes():Observable<any>
+  {
+    return this.http.get(this.path+'cliente.php?opcion=ver', this.httpOptions).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+  nuevocliente(nombre:any,apellido:any,carnet:any):Observable<any>
+  {
+    var body =  'nombre='+ nombre + '&apellido='+apellido+ '&carnet='+carnet+ '';
+    return this.http.post(this.path+'cliente.php?opcion=nuevo',body, this.httpOptions).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+  
 }

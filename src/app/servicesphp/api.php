@@ -398,8 +398,50 @@ function gettable(){
     }
 }
 
+/* Cliente */
+function getcliente(){
+    $pelicula = new Pelicula();
+    $peliculas["items"] = array();
+    $res = $pelicula->obtclientes();
+    if($res){
+        while ( $row = $res->fetch( ) ) {
+            
+            $item=array(
+                "idcliente" => $row['idcliente'],
+                "Nombre" => $row['Nombre'],
+                "Apellido" => $row['Apellido'],
+                "CI" => $row['CI'],
+                
+            );
+            array_push($peliculas["items"], $item);
+        }
+       return $this->printJSON($peliculas);        
+    }else{  
+        echo json_encode(array('mensaje' => 'No hay elementos'));
+    }
+}
 
-
+function createclient($datos){
+    $pelicula = new Pelicula();
+    $peliculas["items"] = array();
+    $res = $pelicula->crearcliente($datos);
+    if($res){
+        while ( $row = $res->fetch( ) ) {
+            
+            $item=array(
+                "idcliente" => $row['idcliente'],
+                "Nombre" => $row['Nombre'],
+                "Apellido" => $row['Apellido'],
+                "CI" => $row['CI'],
+                
+            );
+            array_push($peliculas["items"], $item);
+        }
+       return $this->printJSON($peliculas);        
+    }else{  
+        echo json_encode(array('mensaje' => 'No hay elementos'));
+    }
+}
 /*mensajes*/ 
 
 
