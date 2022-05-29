@@ -1,5 +1,5 @@
 import { DomElementSchemaRegistry } from "@angular/compiler";
-import { Component,OnInit, Inject, ViewChild } from "@angular/core";
+import { Component, OnInit, Inject, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from "@angular/material/paginator";
@@ -24,7 +24,10 @@ export interface DialogData {
     styleUrls: ['./lista-mesas.component.css']
 })
 export class reservarmesacomponete {
-    // lg: FormGroup;
+    index = 0;
+    lista:any
+    lg: FormGroup;
+    seleccionar = false;
     loading = { 1: false, 2: false, 3: false, 4: false };
     selected: any;
     id?: string;
@@ -39,9 +42,17 @@ export class reservarmesacomponete {
     datamesa: DialogData;
     datoscliente: any;
     dataSource?: any;
-    displayedColumns: string[] = ['Id','CI', 'Nombre', 'Apellido','Acciones'];
+    displayedColumns: string[] = ['Id', 'CI', 'Nombre', 'Apellido', 'Acciones'];
     @ViewChild(MatPaginator) paginator: MatPaginator | any;
     @ViewChild(MatSort) sort: MatSort | any;
+    datosidcliente: any;
+    datosproductos: any;
+    cantidad?: number[];
+    seleccioncantidad: any;
+    idproducto: any;
+    nombre: any;
+    costo: any;
+
     constructor(
         public dialogRef: MatDialogRef<reservarmesacomponete>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -50,51 +61,51 @@ export class reservarmesacomponete {
         private imageCompress: NgxImageCompressService,
         private service: ServicesService,
         private sanitizer: DomSanitizer,
-        private dialog:MatDialog
-        
+        private dialog: MatDialog
+
         // public service: SerService
     ) {
 
         this.datamesa = this.data;
         console.log(this.dataproducto);
 
-        // this.imgResultAfterCompress = this.dataproducto.Foto;
-        // this.lg = this.formBuilder.group({
-        //     Nombre: ['', [Validators.required]],
-        //     Cantidad: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-        //     Precio: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
-        // });
+
+        this.lg = this.formBuilder.group({
+            Nombre: ['', [Validators.required]],
+            Cantidad: ['', [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+
+        });
 
     }
     ngOnInit(): void {
         this.obtcliente();
-      }
-   
+    }
+
     obtcliente() {
         this.service.getclientes().subscribe(
-          async data => {
-            this.datoscliente = data.items; 
-            this.dataSource = new MatTableDataSource(this.datoscliente);
-            this.dataSource.paginator = this.paginator;
-            this.dataSource.sort = this.sort;
+            async data => {
+                this.datoscliente = data.items;
+                this.dataSource = new MatTableDataSource(this.datoscliente);
+                this.dataSource.paginator = this.paginator;
+                this.dataSource.sort = this.sort;
 
-            console.table(this.datoscliente);
-            
-            
-          }, err => {
-            console.log(err);
-          }
+
+
+
+            }, err => {
+                console.log(err);
+            }
         );
-      }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
     }
-  }
+
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+
+        if (this.dataSource.paginator) {
+            this.dataSource.paginator.firstPage();
+        }
+    }
 
 
 
@@ -108,10 +119,89 @@ export class reservarmesacomponete {
         const dialogRef = this.dialog.open(nuevoclientecomponent, {
             width: '100%',
             data: {
-              mode: 'añadir',
-              
-            },
-          });
+                mode: 'añadir',
 
+            },
+        });
+        dialogRef.afterClosed().subscribe(result => {
+
+
+        });
+
+    }
+    atras() {
+        this.seleccionar = false;
+    }
+    anadir(id: any) {
+
+        this.service.getidcliente(id).subscribe(
+            async data => {
+                this.datosidcliente = data.items[0];
+                this.seleccionar = true;
+                this.obtproductos();
+                console.table(this.datosidcliente)
+            }, err => {
+                console.log(err);
+            }
+        );
+    }
+
+    obtproductos() {
+        this.service.obtenerdatosproducto().subscribe(
+            async data => {
+
+                this.datosproductos = data.items;
+                let elemnt = [];
+
+                for (let index = 0; index < this.datosproductos.length; index++) {
+
+
+                    if (data.items[index].Estado == "Activo") {
+
+                        elemnt.push(data.items[index]);
+                    }
+
+                }
+
+
+                this.datosproductos = elemnt;
+
+
+                console.table(this.datosproductos)
+            }, err => {
+                console.log(err);
+            }
+        );
+    }
+    onChange(centroId: any) {
+
+        const arr = [];
+        for (let index = 1; index <= centroId.Cantidad; index++) {
+
+            arr.push(index);
+        }
+        this.cantidad = arr;
+        this.idproducto = centroId.idProducto;
+        this.nombre = centroId.Nombre;
+        this.costo = centroId.Precio
+        console.log(this.idproducto);
+
+
+    }
+    onChangecantidad(centroId: any) {
+        console.log(centroId); // Aquí iría tu lógica al momento de seleccionar algo
+        this.seleccioncantidad = centroId;
+
+    }
+    anadirlista() {
+        
+        const elemnt = {cantidad: this.seleccioncantidad,idproducto:this.idproducto};
+
+        this.service.lista(this.idproducto,this.seleccioncantidad,this.costo,this.nombre,'');
+
+        this.lista=this.service.retornarlista();
+        console.log(this.lista);
+        
+        
     }
 }

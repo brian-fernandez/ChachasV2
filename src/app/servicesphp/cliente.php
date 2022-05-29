@@ -27,16 +27,27 @@ if (isset($_GET['opcion'])) {
             break;
         case 'nuevo':
            
-            if (isset($_GET['nombre'])&& isset($_GET['apellido'])&& isset($_GET['carnet'])) {
-                echo 'entro a nuevo';
+            if (isset($_POST['nombre'])&& isset($_POST['apellido'])&& isset($_POST['carnet'])) {
+              
                 $item = array(
-                    'nombre' =>$_GET['nombre'],
-                    'apellido' =>$_GET['apellido'],
-                    'carnet' =>$_GET['carnet'],
+                    'nombre' =>$_POST['nombre'],
+                    'apellido' =>$_POST['apellido'],
+                    'carnet' =>$_POST['carnet'],
             
                     
                 );
                 $res = $api->createclient($item);
+            }
+            break;
+
+        case 'getidcliente':
+            if (isset($_POST['id'])) {
+              
+                $item = array(
+                    'id' =>$_POST['id'],
+     
+                );
+                $res = $api->getidclient($item);
             }
             break;
         

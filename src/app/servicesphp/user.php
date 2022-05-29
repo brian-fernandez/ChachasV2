@@ -81,6 +81,19 @@ class Pelicula extends DB{
         $query->execute(['nombre' => $datos['nombre'] ,'apellido' => $datos['apellido'], 'carnet' => $datos['carnet']]);
         return $query;
     }
+    function obtidcliente($id)
+    {
+         $query = $this->connect()->prepare('SELECT * FROM cliente WHERE idcliente = :id');
+         $query->execute(['id' => $id]);
+       
+         if ($query->rowCount()) {
+             return $query;
+             
+         }else{
+             return false;
+         }
+       
+    }
 
    /* PRODUCTOS */
 

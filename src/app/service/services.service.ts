@@ -9,7 +9,7 @@ import { Empleado } from './Empleados';
 export class ServicesService {
 
  
-
+  item : any = [];
 
 
   path = 'http://localhost:80/git/ChachasV2/src/app/servicesphp/';
@@ -258,8 +258,23 @@ getUsers(): Observable<any> {
   }
   nuevocliente(nombre:any,apellido:any,carnet:any):Observable<any>
   {
-    var body =  'nombre='+ nombre + '&apellido='+apellido+ '&carnet='+carnet+ '';
-    return this.http.post(this.path+'cliente.php?opcion=nuevo',body, this.httpOptions).pipe(
+    var body = 'nombre='+ nombre + '&apellido='+apellido+ '&carnet='+carnet+ '';
+    return this.http.post(this.path+'cliente.php?opcion=nuevo',body, this.httpOptions2).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+
+  getidcliente(id:any):Observable<any>
+  {
+    var body = 'id='+ id  +'';
+    return this.http.post(this.path+'cliente.php?opcion=getidcliente',body, this.httpOptions2).pipe(
       tap((data: any) =>  {
 
        
@@ -271,4 +286,24 @@ getUsers(): Observable<any> {
     );
   }
   
+
+  lista(id:any,cantidad:any,costo:any,nombre:any,total:any)
+  {
+    let totalPriceProducto = (Math.round(total * 100) / 100).toFixed(2);
+      this.item.push({
+        cantidad: cantidad,
+        idproducto:id,
+        costo:costo,
+        nombre:nombre
+      });
+  }
+  retornarlista()
+  {
+    return this.item;
+  }
+  eliminarlista(id:any)
+  {
+    this.items.splice(id,1)
+    return this.item;
+  }
 }
