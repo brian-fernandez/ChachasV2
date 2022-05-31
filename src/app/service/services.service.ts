@@ -19,6 +19,7 @@ export class ServicesService {
   httpOptions?: { headers: HttpHeaders } ;
   httpOptions2?: { headers: HttpHeaders; };
   url: any;
+  total: any;
   
   constructor(private http:HttpClient) { 
     this.httpOptions = {
@@ -224,6 +225,25 @@ getUsers(): Observable<any> {
       })
     );
   }
+  reservarproducto(info:any,idUsuario:any,idcliente:any,mesaid:any,total:any):Observable<any>
+  {
+
+    // let convertidor = JSON.parse(info)
+    var body = 'info='+ info + '&idUsuario='+idUsuario+ '&idcliente='+idcliente+ '&mesaid='+mesaid+'&total='+total+'';
+    return this.http.post(this.path+'reservar.php?opcion=nuevo',body, this.httpOptions2).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
+
+
+
   /*  mesas* */
 
   obtmesas():Observable<any>
@@ -239,6 +259,71 @@ getUsers(): Observable<any> {
         return throwError(err);
       })
     );
+  }
+  reservmesa(id:any):Observable<any>
+  {
+    let body = 'id='+id+''
+    return this.http.post(this.path+'mesa.php?opcion=ocupar',body, this.httpOptions2).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+    
+  }
+  quitarreservmesa(id:any):Observable<any>
+  {
+    let body = 'id='+id+''
+    return this.http.post(this.path+'mesa.php?opcion=desocupar',body, this.httpOptions2).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+    
+  }
+  crearmesa(nombre:any):Observable<any>
+  {
+    let body = 'nombre='+nombre+''
+    return this.http.post(this.path+'mesa.php?opcion=crear',body, this.httpOptions2).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+    
+  }
+  eliminarmesa(id:any):Observable<any>
+  {
+   
+    var body = 'opcion=eliminar&id=' + id;
+
+    this.url = this.path+'mesa.php?'+body;
+
+    
+    return this.http.delete(this.url, this.httpOptions2).pipe(
+      tap((data: any) =>  {
+
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+    
   }
 
   /* CLIENTES*/
@@ -287,14 +372,18 @@ getUsers(): Observable<any> {
   }
   
 
-  lista(id:any,cantidad:any,costo:any,nombre:any,total:any)
+  lista(id:any,cantidad:any,costo:any,nombre:any)
   {
-    let totalPriceProducto = (Math.round(total * 100) / 100).toFixed(2);
+    // let totalPriceProducto = (Math.round(total * 100) / 100).toFixed(2);
+
+      let total =  cantidad * costo ;
+
       this.item.push({
         cantidad: cantidad,
         idproducto:id,
         costo:costo,
-        nombre:nombre
+        nombre:nombre,
+        total:total
       });
   }
   retornarlista()
@@ -305,5 +394,29 @@ getUsers(): Observable<any> {
   {
     this.items.splice(id,1)
     return this.item;
+  }
+
+  eliminarlistatotal()
+  {
+   
+    return this.item.pop();
+  }
+
+  getTotalBill() {
+    this.total = 0;
+
+
+    if (this.item != null) {
+
+      for (let items of this.item) {
+        
+        this.total += parseFloat(items.total);
+      }
+    }
+    
+    
+    let tot = (Math.round(this.total * 100) / 100).toFixed(2);
+ 
+    return tot
   }
 }

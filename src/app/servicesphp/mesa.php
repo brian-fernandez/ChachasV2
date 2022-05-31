@@ -19,10 +19,39 @@ if (isset($_GET['opcion'])) {
             break;
         case 'eliminar':
             
+            if (isset($_GET['id'])) {
+               
+                $res = $api->deletedmesa($_GET['id']);
+            }
             break;
         case 'ocupar':
+                        if (isset($_POST['id'])) {
+                            $item = array(
+                                'id' =>$_POST['id'],
+                        
+                                
+                            );
+                            $res = $api->estadomesaocupado($item);
+                        }
             
             break;
+        case 'desocupar':
+            if (isset($_POST['id'])) {
+                $item = array(
+                    'id' =>$_POST['id'],
+            
+                    
+                );
+                $res = $api->estadomesadesocupado($item);
+            }
+            break;
+            case 'crear':
+                if (isset($_POST['nombre'])) {
+                    
+                   
+                    $res = $api->createmesa($_POST['nombre']);
+                }
+                break;
         
         default:
             # code...

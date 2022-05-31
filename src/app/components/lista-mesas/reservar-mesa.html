@@ -135,13 +135,34 @@
         </div>
         <div class="col-sm-4">
             <div *ngIf="lista">
-                <div class="row" *ngFor="let mostrarlista of lista">
-                    <div class="col-sm-4">Nombre <br>{{mostrarlista.nombre}}</div>
-                    <div class="col-sm-3">Cantidad <br> {{mostrarlista.cantidad}}</div>
-                    <div class="col-sm-3">Precio <br> {{mostrarlista.costo}}</div>
+                <div class="row" >
+                    <div class="col-sm-4">Nombre</div>
+                    <div class="col-sm-3">Cantidad</div>
+                    <div class="col-sm-3">Precio </div>
+                    <div class="col-sm-2">Total</div>
                    
+                </div>
+                <div class="row" *ngFor="let mostrarlista of lista">
+                    <div class="col-sm-4">{{mostrarlista.nombre}}</div>
+                    <div class="col-sm-3">{{mostrarlista.cantidad}}</div>
+                    <div class="col-sm-3">{{mostrarlista.costo}}</div>
+                    <div class="col-sm-2">{{mostrarlista.total}}</div>
+                   
+                </div>
+               
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div *ngIf="lista">
+                <div class="col-sm-4">
+                    <h4>Total</h4>
+                    <h1>{{totalultimo}}Bs.</h1>
+                </div>
+                <div> 
+                    <button mat-raised-button color="primary" (click)="reservar()">Primary</button>
                 </div>
             </div>
         </div>
+       
     </div>
 </div>

@@ -1,0 +1,35 @@
+<form [formGroup]="lg" class="example-form">
+    <div mat-dialog-content style="display: flex;align-items: center;">
+        <!-- <mat-form-field style="width: 100%;">
+            <mat-label>Carnet de identidad</mat-label>
+            <input matInput    placeholder="{{datauser?.id}} formControlName="ci">
+            
+        </mat-form-field> -->
+     
+
+
+        <div>
+
+            <mat-form-field style="width: 100%;">
+                <mat-label>Nombre</mat-label>
+                <input matInput maxlength="25" type="text" 
+                    formControlName="Nombre">
+
+
+            </mat-form-field>
+           
+            
+          
+        </div>
+
+
+
+
+    </div>
+    <div mat-dialog-actions>
+        <button class="btn-block" mat-raised-button color="accent" (click)="anadir()">
+            Añadir nuevo cliente
+
+        </button>
+    </div>
+</form>

@@ -205,9 +205,29 @@ class Pelicula extends DB{
 
     function obtenerreservas()
     {
-        $query = $this->connect()->query('SELECT r.Reservaid as "idreserva" ,r.Fecha_reserva as "Fecha", r.Reserva_info as "informacion", r.Usuario_CI as "usuario",p.Nombre as Producto, m.Nombre as "nombre_mesa", c.CI  as cliente FROM reservas r join cliente c on (r.idcliente=c.idcliente) join Producto p on (r.Producto=p.idProducto) join mesa m on(r.mesaid=m.idMesa );');
+        $query = $this->connect()->query('SELECT r.Reservaid as "idreserva" ,r.Fecha_reserva as "Fecha", r.Reserva_info as "informacion", r.Usuario_CI as "usuario", m.Nombre as "nombre_mesa", c.CI  as cliente FROM reservas r join cliente c on (r.idcliente=c.idcliente) join mesa m on(r.mesaid=m.idMesa );');
         return $query;
     }
+
+    function reservar($datos)
+   {
+    
+      
+    $DateAndTime = date('YYYY-m-d h:i:s a', time());  
+    $query = $this->connect()->prepare('INSERT INTO reservas ( `Fecha_reserva`, `Reserva_info`, `Usuario_CI`, `Reservaid`, `idcliente`, `mesaid`, `total`) VALUES ( :DateAndTime, :info, :usuarioid, NULL, :clienteid, :mesaid, :total)');
+
+    $query->execute(['DateAndTime' => $DateAndTime,'info' => $datos['info'] ,'usuarioid' => $datos['idUsuario'], 'clienteid' => $datos['idcliente'], 'mesaid' => $datos['mesaid'], 'total' => $datos['total']]);
+ 
+    if ($query->rowCount()) {
+        
+        return $query;
+        
+    }else{
+        
+        return false;
+    }
+}
+
 
 
   
@@ -219,6 +239,35 @@ class Pelicula extends DB{
     return $query;
    
     
+}
+
+function ocuparmesa ($id){
+    $query = $this->connect()->prepare('UPDATE mesa SET Estado = "Reservado" WHERE idMesa = :id');
+    $query->execute(['id' => $id]);
+    return $query;
+    return json_encode($query);
+}
+
+function desocuparmesa ($id){
+    
+    $query = $this->connect()->prepare('UPDATE mesa SET Estado = "Sin Reserva" WHERE idMesa = :id');
+    $query->execute(['id' => $id]);
+    return $query;
+    return json_encode($query);
+}
+
+function nuevamesa($nombre)
+{
+    $query = $this->connect()->prepare('INSERT INTO `mesa` (`idMesa`, `Nombre`, `Estado`) VALUES (NULL, :nombre, "Sin Reserva")');
+    $query -> execute(['nombre' => $nombre]);
+    return $query;
+    return json_encode($query);
+}
+function eliminarmesa($id)
+{
+    echo $id;
+    $query = $this->connect()->prepare('DELETE FROM mesa WHERE idMesa = :id');
+    $query -> execute(['id' => $id]);
 }
 
 }

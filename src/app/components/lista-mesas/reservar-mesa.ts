@@ -25,7 +25,7 @@ export interface DialogData {
 })
 export class reservarmesacomponete {
     index = 0;
-    lista:any
+    lista: any
     lg: FormGroup;
     seleccionar = false;
     loading = { 1: false, 2: false, 3: false, 4: false };
@@ -52,6 +52,10 @@ export class reservarmesacomponete {
     idproducto: any;
     nombre: any;
     costo: any;
+    totalultimo: any;
+    total: any;
+    idusuario: any;
+    registro: any;
 
     constructor(
         public dialogRef: MatDialogRef<reservarmesacomponete>,
@@ -79,6 +83,10 @@ export class reservarmesacomponete {
     }
     ngOnInit(): void {
         this.obtcliente();
+
+        this.lista = this.service.eliminarlistatotal();
+        this.lista.splice();
+        this.totalultimo = false;
     }
 
     obtcliente() {
@@ -88,6 +96,8 @@ export class reservarmesacomponete {
                 this.dataSource = new MatTableDataSource(this.datoscliente);
                 this.dataSource.paginator = this.paginator;
                 this.dataSource.sort = this.sort;
+
+
 
 
 
@@ -111,6 +121,10 @@ export class reservarmesacomponete {
 
     onNoClick(): void {
         this.dialogRef.close();
+        this.lista = this.service.eliminarlistatotal();
+        this.lista.splice();
+        this.totalultimo = false;
+
     }
 
 
@@ -194,14 +208,52 @@ export class reservarmesacomponete {
 
     }
     anadirlista() {
-        
-        const elemnt = {cantidad: this.seleccioncantidad,idproducto:this.idproducto};
 
-        this.service.lista(this.idproducto,this.seleccioncantidad,this.costo,this.nombre,'');
 
-        this.lista=this.service.retornarlista();
-        console.log(this.lista);
-        
-        
+
+        this.service.lista(this.idproducto, this.seleccioncantidad, this.costo, this.nombre);
+
+        this.lista = this.service.retornarlista();
+
+        this.totalultimo = this.service.getTotalBill();
+
+
     }
+
+    reservar() {
+
+        let reserv = JSON.stringify(this.lista)
+        this.idusuario = localStorage.getItem('ci');
+        this.service.reservarproducto(reserv, this.idusuario, this.datosidcliente.idcliente, this.datamesa.Id, this.totalultimo).subscribe(
+            async data => {
+              
+                this.registro = data
+                this.lista = this.service.eliminarlistatotal();
+                
+                this.reservarmesa();
+                
+
+
+                console.table(this.registro);
+            }, err => {
+                console.log(err);
+            }
+        );
+
+       
+    }
+    reservarmesa()
+    {
+        this.service.reservmesa(this.datamesa.Id).subscribe(
+            async data => {
+                console.log(data);
+                
+            }, err => {
+                console.log(err);
+                
+            }
+        );
+    }
+
+
 }

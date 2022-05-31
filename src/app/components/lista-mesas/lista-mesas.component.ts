@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/service/services.service';
+import { nuevomesacomponent } from './nuevo.mesa';
 import { reservarmesacomponete } from './reservar-mesa';
 
 @Component({
@@ -21,7 +22,10 @@ export class ListaMesasComponent implements OnInit {
 
   anadir()
   {
-    
+    const dialogRef = this.dialog.open(nuevomesacomponent, {
+      width: '50%',
+     
+  });
   }
   vermesas()
   {
@@ -53,6 +57,36 @@ export class ListaMesasComponent implements OnInit {
     
     }
     );
+  }
+  quitarreserva(id:any)
+  {
+
+    this.services.quitarreservmesa(id.idMesa).subscribe(
+      async data => {
+       
+        console.log(data);
+
+        this.vermesas();
+           
+      }, err => {
+        console.log(err);
+      }
+    );
+  }
+  eliminar(id:any)
+  {
+    this.services.eliminarmesa(id.idMesa).subscribe(
+      async data => {
+       
+        console.log(data);
+
+        this.vermesas();
+           
+      }, err => {
+        console.log(err);
+      }
+    );
+    
   }
 
 }

@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
 
   numero = 0;
 
-  displayedColumns: string[] = ['Fecha', 'informacion', 'usuario', 'Producto','nombre_mesa','cliente'];
+  displayedColumns: string[] = ['Fecha',  'usuario', 'nombre_mesa','cliente'];
   
   datosproducto: any;
 

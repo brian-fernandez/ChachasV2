@@ -31,11 +31,11 @@
 
                                 <ng-template #reserv>
 
-                                    <button mat-stroked-button color="accent">Finalizar reserva</button>
+                                    <button mat-stroked-button color="accent" (click)="quitarreserva(mesas)">Finalizar reserva</button>
                                 </ng-template>
 
 
-                                <button mat-stroked-button color="warn" style="text-align:center ; text-align: center; display: flex; justify-content: space-between;">
+                                <button mat-stroked-button (click)="eliminar(mesas)" color="warn" style="text-align:center ; text-align: center; display: flex; justify-content: space-between;">
                                     <span class="material-icons" style="font-size:17px ;">
                                         delete
                                     </span>eliminar</button>
