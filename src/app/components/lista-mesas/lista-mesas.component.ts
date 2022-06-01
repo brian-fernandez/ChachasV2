@@ -26,6 +26,11 @@ export class ListaMesasComponent implements OnInit {
       width: '50%',
      
   });
+  dialogRef.afterClosed().subscribe(result => {
+    
+    this.vermesas();
+}
+);
   }
   vermesas()
   {
@@ -81,6 +86,7 @@ export class ListaMesasComponent implements OnInit {
         console.log(data);
 
         this.vermesas();
+        
            
       }, err => {
         console.log(err);

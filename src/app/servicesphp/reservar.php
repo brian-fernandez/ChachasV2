@@ -28,7 +28,7 @@ if (isset($_GET['opcion'])) {
             break;
         case 'nuevo':
            
-            if (isset($_POST['info'])&& isset($_POST['idUsuario'])&& isset($_POST['idcliente'])&& isset($_POST['mesaid'])&& isset($_POST['total'])) {
+            if (isset($_POST['info'])&& isset($_POST['tiempo']) && isset($_POST['idUsuario'])&& isset($_POST['idcliente'])&& isset($_POST['mesaid'])&& isset($_POST['total'])) {
                
                 $item = array(
                     'info' =>$_POST['info'],
@@ -36,6 +36,7 @@ if (isset($_GET['opcion'])) {
                     'idcliente' =>$_POST['idcliente'],
                     'mesaid' =>$_POST['mesaid'],
                     'total' =>$_POST['total'],
+                    'fecha' =>$_POST['tiempo'],
 
             
                     

@@ -225,11 +225,11 @@ getUsers(): Observable<any> {
       })
     );
   }
-  reservarproducto(info:any,idUsuario:any,idcliente:any,mesaid:any,total:any):Observable<any>
+  reservarproducto(info:any,fecha:any,idUsuario:any,idcliente:any,mesaid:any,total:any):Observable<any>
   {
 
     // let convertidor = JSON.parse(info)
-    var body = 'info='+ info + '&idUsuario='+idUsuario+ '&idcliente='+idcliente+ '&mesaid='+mesaid+'&total='+total+'';
+    var body = 'info='+ info + '&idUsuario='+idUsuario+ '&idcliente='+idcliente+ '&mesaid='+mesaid+'&total='+total+'&tiempo='+fecha+'';
     return this.http.post(this.path+'reservar.php?opcion=nuevo',body, this.httpOptions2).pipe(
       tap((data: any) =>  {
 

@@ -1,4 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ServicesService } from 'src/app/service/services.service';
+
+
+export interface PeriodicElement {
+  Fecha_reserva: any;
+  Reserva_info: any;
+  Usuario_CI: any;
+  Reservaid: any;
+  idcliente: any;
+  mesaid: any;
+  total:any;
+}
+
 
 @Component({
   selector: 'app-lista-reservas',
@@ -6,10 +22,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-reservas.component.css']
 })
 export class ListaReservasComponent implements OnInit {
+  datareserva: any;
+  dataSource?: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator | any;
+  @ViewChild(MatSort) sort: MatSort | any;
+  displayedColumns: string[] = ['Fecha_reserva', 'Usuario_CI', 'Reservaid', 'idcliente', 'mesaid','total', 'Acciones'];
+  constructor
+    (
+      private services: ServicesService
 
-  constructor() { }
+    ) { }
 
   ngOnInit(): void {
+    this.obtenerreserva();
   }
 
+  obtenerreserva() {
+
+    this.services.obtenerreservas().subscribe(
+      async data => {
+        this.datareserva = data.items;
+        this.dataSource = new MatTableDataSource(this.datareserva);
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log(this.datareserva);
+
+      }, err => {
+        console.log(err);
+      }
+    )
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  detalle(id:any)
+  {
+
+
+}
 }

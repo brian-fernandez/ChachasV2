@@ -56,8 +56,10 @@ export class reservarmesacomponete {
     total: any;
     idusuario: any;
     registro: any;
+    tiempo: any;
 
     constructor(
+        
         public dialogRef: MatDialogRef<reservarmesacomponete>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData,
         private formBuilder: FormBuilder,
@@ -85,7 +87,7 @@ export class reservarmesacomponete {
         this.obtcliente();
 
         this.lista = this.service.eliminarlistatotal();
-        this.lista.splice();
+       
         this.totalultimo = false;
     }
 
@@ -122,7 +124,7 @@ export class reservarmesacomponete {
     onNoClick(): void {
         this.dialogRef.close();
         this.lista = this.service.eliminarlistatotal();
-        this.lista.splice();
+        
         this.totalultimo = false;
 
     }
@@ -222,9 +224,14 @@ export class reservarmesacomponete {
 
     reservar() {
 
+        let anio= new Date().getFullYear();
+        let mes = new Date().getMonth()+1;
+        let dia = new Date().getDay();
+        this.tiempo = anio+'-'+mes+'-'+dia;
+
         let reserv = JSON.stringify(this.lista)
         this.idusuario = localStorage.getItem('ci');
-        this.service.reservarproducto(reserv, this.idusuario, this.datosidcliente.idcliente, this.datamesa.Id, this.totalultimo).subscribe(
+        this.service.reservarproducto(reserv,this.tiempo, this.idusuario, this.datosidcliente.idcliente, this.datamesa.Id, this.totalultimo).subscribe(
             async data => {
               
                 this.registro = data
@@ -232,7 +239,7 @@ export class reservarmesacomponete {
                 
                 this.reservarmesa();
                 
-
+                this.onNoClick();
 
                 console.table(this.registro);
             }, err => {
@@ -248,6 +255,7 @@ export class reservarmesacomponete {
             async data => {
                 console.log(data);
                 
+                
             }, err => {
                 console.log(err);
                 
@@ -255,5 +263,6 @@ export class reservarmesacomponete {
         );
     }
 
+   
 
 }

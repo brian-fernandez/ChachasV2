@@ -23,6 +23,7 @@ import { ListaMesasComponent } from './components/lista-mesas/lista-mesas.compon
 import { reservarmesacomponete } from './components/lista-mesas/reservar-mesa';
 import { nuevoclientecomponent } from './components/lista-cliente/nuevlo-cliente';
 import { nuevomesacomponent } from './components/lista-mesas/nuevo.mesa';
+import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { nuevomesacomponent } from './components/lista-mesas/nuevo.mesa';
     ListaMesasComponent,
     reservarmesacomponete,
     nuevoclientecomponent,
-    nuevomesacomponent
+    nuevomesacomponent,
+    ListaReservasComponent
   ],
   imports: [
     BrowserModule,

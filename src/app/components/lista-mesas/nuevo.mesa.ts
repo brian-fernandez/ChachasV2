@@ -20,7 +20,9 @@ import { nuevoclientecomponent } from "../lista-cliente/nuevlo-cliente";
 export class nuevomesacomponent {
     lg: FormGroup;
     constructor(private service: ServicesService,
-        private formBuilder: FormBuilder,) {
+        private formBuilder: FormBuilder,
+        public dialogRef: MatDialogRef<nuevomesacomponent>,
+        ) {
         this.lg = this.formBuilder.group({
             Nombre: ['', [Validators.required]]
 
@@ -36,11 +38,15 @@ export class nuevomesacomponent {
             async data => {
 
                 console.log(data);
-
+                this.onNoClick();
             }, err => {
                 console.log(err);
             }
         );
+    }
+
+    onNoClick(): void {
+        this.dialogRef.close();
     }
 }
 
