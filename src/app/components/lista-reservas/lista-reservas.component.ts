@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServicesService } from 'src/app/service/services.service';
+import { verdetallecomponent } from './detalle';
 
 
 export interface PeriodicElement {
@@ -12,7 +14,7 @@ export interface PeriodicElement {
   Reservaid: any;
   idcliente: any;
   mesaid: any;
-  total:any;
+  total: any;
 }
 
 
@@ -26,11 +28,12 @@ export class ListaReservasComponent implements OnInit {
   dataSource?: any;
   @ViewChild(MatPaginator) paginator: MatPaginator | any;
   @ViewChild(MatSort) sort: MatSort | any;
-  displayedColumns: string[] = ['Fecha_reserva', 'Usuario_CI', 'Reservaid', 'idcliente', 'mesaid','total', 'Acciones'];
+  displayedColumns: string[] = ['Reservaid', 'Fecha_reserva', 'Usuario_CI', 'idcliente', 'mesaid', 'total', 'Acciones'];
+  lista: any;
   constructor
     (
-      private services: ServicesService
-
+      private services: ServicesService,
+      private dialog:MatDialog
     ) { }
 
   ngOnInit(): void {
@@ -63,9 +66,19 @@ export class ListaReservasComponent implements OnInit {
     }
   }
 
-  detalle(id:any)
-  {
+  detalle(ids: any) {
+   this.lista =  JSON.parse(ids.informacion)    
+    const dialogRef = this.dialog.open(verdetallecomponent, {
+      
+      width: '70%', height:'600px',
+      data: {
+        
+        id:this.lista,
+        total:ids.total,
+        fecha:ids.Fecha
+      
+      },
+    });
 
-
-}
+  }
 }

@@ -205,7 +205,7 @@ class Pelicula extends DB{
 
     function obtenerreservas()
     {
-        $query = $this->connect()->query('SELECT r.Reservaid as "idreserva" ,r.Fecha_reserva as "Fecha", r.Reserva_info as "informacion", r.Usuario_CI as "usuario", m.Nombre as "nombre_mesa", c.CI  as cliente FROM reservas r join cliente c on (r.idcliente=c.idcliente) join mesa m on(r.mesaid=m.idMesa );');
+        $query = $this->connect()->query('SELECT r.total as total, r.Reservaid as "idreserva" ,r.Fecha_reserva as "Fecha", r.Reserva_info as "informacion", r.Usuario_CI as "usuario", m.Nombre as "nombre_mesa", c.CI  as cliente FROM reservas r join cliente c on (r.idcliente=c.idcliente) join mesa m on(r.mesaid=m.idMesa );');
         return $query;
     }
 

@@ -24,7 +24,9 @@ import { reservarmesacomponete } from './components/lista-mesas/reservar-mesa';
 import { nuevoclientecomponent } from './components/lista-cliente/nuevlo-cliente';
 import { nuevomesacomponent } from './components/lista-mesas/nuevo.mesa';
 import { ListaReservasComponent } from './components/lista-reservas/lista-reservas.component';
-
+import { verdetallecomponent } from './components/lista-reservas/detalle';
+import {NgxPrintModule} from 'ngx-print';
+import { ListaClienteComponent } from './components/lista-cliente/lista-cliente.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +42,9 @@ import { ListaReservasComponent } from './components/lista-reservas/lista-reserv
     reservarmesacomponete,
     nuevoclientecomponent,
     nuevomesacomponent,
-    ListaReservasComponent
+    ListaReservasComponent,
+    verdetallecomponent,
+    ListaClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,8 @@ import { ListaReservasComponent } from './components/lista-reservas/lista-reserv
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPrintModule
 
   ],
   providers: [],

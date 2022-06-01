@@ -1,0 +1,41 @@
+<div id="print-section" class="contaner">
+    <h1 style="text-align:center; ">Lista de productos vendidos</h1>
+    <div class="container border b-1">
+        <div class="row" >
+            <div class="col-sm-6"  style="height: 300px;overflow: scroll; ">
+                <div class="row">
+
+                    <div class="col-sm-3">Nombre</div>
+                    <div class="col-sm-3">Cantidad</div>
+                    <div class="col-sm-3">Precio unitario</div>
+                    <div class="col-sm-3">Total</div>
+
+
+                </div>
+                <hr>
+                <div class="row" *ngFor="let list of this.data.id">
+
+                    <div class="col-sm-3 m-0">{{list.nombre}}</div>
+                    <div class="col-sm-3 m-0">{{list.cantidad}} </div>
+                    <div class="col-sm-3 m-0">{{list.costo}} bs</div>
+                    <div class="col-sm-3 m-0">{{list.total}} bs</div>
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h4>Total</h4>
+                <hr>
+                <h1>{{data.total}}bs</h1>
+                <h4>Fecha de reserva</h4>
+                <hr>
+                <h2>{{data.fecha}}</h2>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<div class="container p-3">
+    <button printSectionId="print-section" ngxPrint  (click)="printer()">
+       Imprimir
+      </button> 
+</div>

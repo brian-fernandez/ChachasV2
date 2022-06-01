@@ -126,7 +126,7 @@ DROP TABLE IF EXISTS `reservas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `reservas` (
-  `Fecha_reserva` datetime DEFAULT NULL,
+  `Fecha_reserva` date DEFAULT NULL,
   `Reserva_info` longtext DEFAULT NULL,
   `Usuario_CI` varchar(45) NOT NULL,
   `Reservaid` int(11) NOT NULL AUTO_INCREMENT,
@@ -164,7 +164,7 @@ CREATE TABLE `usuario` (
   `CI` varchar(45) NOT NULL,
   `Contraseña` varchar(45) DEFAULT NULL,
   `Foto` mediumtext DEFAULT NULL,
-  `Fecha_nacimiento` datetime DEFAULT NULL,
+  `Fecha_nacimiento` date DEFAULT NULL,
   `Nombre` varchar(45) DEFAULT NULL,
   `Cargo_idCargo` int(11) NOT NULL,
   `Apellido` varchar(45) DEFAULT NULL,

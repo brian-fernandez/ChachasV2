@@ -363,6 +363,7 @@ function login($datos)
                 
                  "nombre_mesa" =>$row['nombre_mesa'],
                  "cliente" => $row['cliente'],
+                 "total" => $row['total'],
                 
             );
             

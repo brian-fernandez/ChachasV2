@@ -49,7 +49,7 @@ export class ListaProductoComponent implements OnInit {
   ngOnInit(): void {
 
     this.obtproducto();
-   
+
   }
   ngAfterViewInit() {
     this.datosproducto();
@@ -58,7 +58,7 @@ export class ListaProductoComponent implements OnInit {
   obtproducto() {
     this.services.obtenerdatosproducto().subscribe(
       async data => {
-        this.datosproducto = data.items; 
+        this.datosproducto = data.items;
         this.dataSource = new MatTableDataSource(this.datosproducto);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -111,8 +111,8 @@ export class ListaProductoComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('hola');
-            
+          console.log('hola');
+
           this.obtproducto();
         }
         );
@@ -161,7 +161,7 @@ export class ListaProductoComponent implements OnInit {
         this.obtproducto();
         console.log(this.datosproducto);
 
-        
+
 
       }, err => {
         console.log(err);
@@ -170,44 +170,43 @@ export class ListaProductoComponent implements OnInit {
   }
 
 
-  eliminar(id:any) {
-this.services.eliminarproducto(id).subscribe(
-  async data => {
-    this.datoseliminados = data;
+  eliminar(id: any) {
+    this.services.eliminarproducto(id).subscribe(
+      async data => {
+        this.datoseliminados = data;
 
-    this._snackBar.open('Producto eliminado', 'Close', {
-      duration: 5000,
-      verticalPosition: 'bottom',
-      horizontalPosition: 'start'
+        this._snackBar.open('Producto eliminado', 'Close', {
+          duration: 5000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'start'
+        });
+        this.obtproducto();
+        console.log(this.datoseliminados);
+
+
+
+      }, err => {
+        console.log(err);
+      }
+    );
+  }
+
+
+  anadir() {
+    const dialogRef = this.dialog.open(nuevoproductocomponent, {
+      width: '50%', height: '400px',
+      data: {
+        mode: 'Nuevo',
+
+      },
     });
-    this.obtproducto();
-    console.log(this.datoseliminados);
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('hola');
 
-    
-
-  }, err => {
-    console.log(err);
-  }
-);
+      this.obtproducto();
+    }
+    );
   }
 
 
-anadir()
-{
-  const dialogRef = this.dialog.open(nuevoproductocomponent, {
-    width: '50%', height:'400px',
-    data: {
-      mode: 'Nuevo',
-    
-    },
-  });
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('hola');
-    
-  this.obtproducto();
-}
-);
-}
-
- 
 }

@@ -20,7 +20,7 @@
 
 
           <mat-card-actions>
-            <button mat-button>Mas Información</button>
+            <button mat-button routerLink="/lista-producto">Mas Información</button>
 
           </mat-card-actions>
 
@@ -42,13 +42,13 @@
 
             </div>
             <div class="col-sm-4">
-              <h1 style="font-size:70px;text-align: center;">50</h1>
+              <h1 style="font-size:70px;text-align: center;">{{this.tamanoreserva}}</h1>
             </div>
           </div>
 
 
           <mat-card-actions>
-            <button mat-button>Mas Información</button>
+            <button mat-button  routerLink="/lista-reservas">Mas Información</button>
 
           </mat-card-actions>
 
@@ -70,13 +70,13 @@
 
             </div>
             <div class="col-sm-4">
-              <h1 style="font-size:70px;text-align: center;">9</h1>
+              <h1 style="font-size:70px;text-align: center;">{{this.tamanomesa}}</h1>
             </div>
           </div>
 
 
           <mat-card-actions>
-            <button mat-button>Mas Información</button>
+            <button mat-button routerLink="/lista-mesa">Mas Información</button>
 
           </mat-card-actions>
 
@@ -131,7 +131,7 @@
           </table>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button>Mas informacion</button>
+          <button mat-button  routerLink="/lista-reservas">Mas informacion</button>
 
         </mat-card-actions>
       </mat-card>
