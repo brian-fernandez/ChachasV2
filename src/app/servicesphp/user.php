@@ -216,7 +216,7 @@ class Pelicula extends DB{
     $DateAndTime = date('YYYY-m-d h:i:s a', time());  
     $query = $this->connect()->prepare('INSERT INTO reservas ( `Fecha_reserva`, `Reserva_info`, `Usuario_CI`, `Reservaid`, `idcliente`, `mesaid`, `total`) VALUES ( :DateAndTime, :info, :usuarioid, NULL, :clienteid, :mesaid, :total)');
 
-    $query->execute(['DateAndTime' => $DateAndTime,'info' => $datos['info'] ,'usuarioid' => $datos['idUsuario'], 'clienteid' => $datos['idcliente'], 'mesaid' => $datos['mesaid'], 'total' => $datos['total']]);
+    $query->execute(['DateAndTime' => $datos['fecha'],'info' => $datos['info'] ,'usuarioid' => $datos['idUsuario'], 'clienteid' => $datos['idcliente'], 'mesaid' => $datos['mesaid'], 'total' => $datos['total']]);
  
     if ($query->rowCount()) {
         
@@ -265,7 +265,7 @@ function nuevamesa($nombre)
 }
 function eliminarmesa($id)
 {
-    echo $id;
+    
     $query = $this->connect()->prepare('DELETE FROM mesa WHERE idMesa = :id');
     $query -> execute(['id' => $id]);
 }
