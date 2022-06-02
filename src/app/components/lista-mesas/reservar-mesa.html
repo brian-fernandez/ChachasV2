@@ -2,9 +2,8 @@
     <h1>Reserva de la mesa {{datamesa.Id}}</h1>
 
     <div class="row">
-        <div class="col-sm-5" *ngIf="!seleccionar">
-            <h3>Datos de clientes</h3>
-            <hr>
+        <div class="col-sm-12" *ngIf="!seleccionar">
+           
             <div class="contendor-flex">
                 <mat-form-field appearance="standard">
                     <mat-label>Buscador</mat-label>
@@ -17,7 +16,7 @@
                     </span></button>
             </div>
             <div class="mat-elevation-z8">
-                <table mat-table [dataSource]="dataSource" matSort>
+                <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
 
                     <!-- Progress Column -->
                     <ng-container matColumnDef="Id">
@@ -80,6 +79,8 @@
             <button (click)="atras()" mat-mini-fab color="accent" aria-label="Example icon button with a plus one icon">
                 <mat-icon>keyboard_backspace</mat-icon>
             </button>
+            <h3>Datos de clientes</h3>
+            <hr>
             <p><strong>Nombre:</strong> {{this.datosidcliente.Nombre}}</p>
             <p><strong>Apellido:</strong> {{this.datosidcliente.Apellido}}</p>
             <p><strong>Carnet:</strong> {{this.datosidcliente.CI}}</p>

@@ -4,4 +4,7 @@
     padding: 25px;
     width: 100%;
   }
-  
+
+.mat-flat-button.mat-warn, .mat-raised-button.mat-warn, .mat-fab.mat-warn, .mat-mini-fab.mat-warn {
+    background-color: #212121 !important;
+}

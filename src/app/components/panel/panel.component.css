@@ -4,6 +4,14 @@
     padding: 25px;
     width: 100%;
   }
+
+  .bg
+  {
+    background-image: url(../../../assets/imagenes/undraw_No_data_re_kwbl.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+  }
   
   table {
     width: 100%;

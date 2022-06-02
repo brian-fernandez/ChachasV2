@@ -1,5 +1,5 @@
 <div id="print-section" class="contaner">
-    <h1 style="text-align:center; ">Lista de productos vendidos</h1>
+    <h1  class="p-1" style="text-align:center; background-color: #FFA726;"><img src="../../../assets/imagenes/logo.png" width="50px" alt=""><br> Lista de productos vendidos</h1>
     <div class="container border b-1">
         <div class="row" >
             <div class="col-sm-6"  style="height: 300px;overflow: scroll; ">
@@ -25,17 +25,20 @@
             <div class="col-sm-6">
                 <h4>Total</h4>
                 <hr>
-                <h1>{{data.total}}bs</h1>
-                <h4>Fecha de reserva</h4>
+                <h1><strong>{{data.total}}bs</strong></h1>
+                <h4>Fecha de reserva: <strong>{{data.fecha}}</strong></h4>
                 <hr>
-                <h2>{{data.fecha}}</h2>
+                <div class="col-sm-6">
+                    <button mat-raised-button color="accent" printSectionId="print-section" ngxPrint  (click)="printer()">
+                        Imprimir
+                       </button> 
+                </div>
             </div>
+           
         </div>
     </div>
     
 </div>
 <div class="container p-3">
-    <button printSectionId="print-section" ngxPrint  (click)="printer()">
-       Imprimir
-      </button> 
+   
 </div>

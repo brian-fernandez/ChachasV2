@@ -147,6 +147,13 @@ export class reservarmesacomponete {
     }
     atras() {
         this.seleccionar = false;
+        
+        this.lista = this.service.eliminarlistatotal();
+        
+        this.lista = false;
+        this.totalultimo = false;
+       this.lg.reset(this.lg.value.Nombre);
+       this.lg.reset(this.lg.value.Cantidad);
     }
     anadir(id: any) {
 

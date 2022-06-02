@@ -2,6 +2,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
+import { ServicesService } from 'src/app/service/services.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,11 +18,14 @@ token:any;
 
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+  datauser: any;
+  
 
   constructor(
     // private EncrDecr: EncrDecrService,
     private observer: BreakpointObserver,
-    private router:Router
+    private router:Router,
+    private services:ServicesService
     
     ) {
     // this.decrypted = this.EncrDecr.get('123456$#@$^@1ERF', localStorage.getItem('log'));
@@ -29,7 +33,20 @@ token:any;
   }
 
 
- 
+  obtiduser()
+  {
+    var token = localStorage.getItem('ci');
+
+    this.services.getiduser(token,'s').subscribe(
+      async data => {
+        this.datauser = data.items[0];
+        console.table(this.datauser.Cargo);
+        
+      }, err => {
+        console.log(err);
+      }
+    )
+  }
 
 
   ngAfterViewInit() {
@@ -45,7 +62,7 @@ token:any;
   }
 
   ngOnInit(): void {
-  
+    this.obtiduser()
   }
 
   cerrar(): void {

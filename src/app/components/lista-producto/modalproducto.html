@@ -10,7 +10,7 @@
             <input matInput    placeholder="{{datauser?.id}} formControlName="ci">
             
         </mat-form-field> -->
-        <div class="editfoto">
+        <!-- <div class="editfoto">
             <img src="{{dataproducto?.Foto}}" alt="" style="width: 70%;
         display: block;
         align-items: center;
@@ -34,7 +34,7 @@
         </button>
         </ng-template>
        
-        </div>
+        </div> -->
 
 
    
@@ -76,7 +76,7 @@
     </div>
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()"> Cancelar</button>
-        <button class="btn-block" (click)="actualizar();" >
+        <button mat-raised-button color="warn" class="btn-block" (click)="actualizar();" >
             Editar
           
         </button>

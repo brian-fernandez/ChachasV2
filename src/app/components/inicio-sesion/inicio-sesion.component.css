@@ -13,7 +13,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
-    filter: blur(2px);
+    filter: brightness(0.5);
 }
 
 html,
@@ -40,8 +40,9 @@ body {
 }
 
 .login-wrapper {
-    height: 100%;
+    /* height: 100%; */
     position: relative;
+    top: -300px;
 }
 
 .positronx {
@@ -82,14 +83,15 @@ body {
     z-index: -1;
 }
 button{
+    color: white;
     border: none;
     padding: 10px;
-    background: #73f772;
+    background: black;
     border-radius: 10px;
 }
 button:hover
 {
-    background: #45d445;
+    background: #212221;
 }
 
 .box:before {
@@ -145,4 +147,24 @@ button:hover
 }
 .alert {
     color: red;
+}
+body::-webkit-scrollbar
+{
+  width: 10px;
+}
+
+body::-webkit-scrollbar-button
+{
+  width: 10px;
+  background-color: black;
+}
+body::-webkit-scrollbar-corner
+{
+  width: 10px;
+  background-color: black;
+}
+body::-webkit-scrollbar-thumb
+{
+  width: 10px;
+  background-color: black;
 }

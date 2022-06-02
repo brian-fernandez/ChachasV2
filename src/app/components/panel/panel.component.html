@@ -1,11 +1,11 @@
 
 
 
-<div class="example-container">
+<div class="example-container bg">
   <div  class="row p-5">
   
     <div  class="col-md-4">
-      <div  class="card card-profile">
+      <div  class="card card-profile" style="box-shadow: -1px 8px 12px 6px rgb(0 0 0 / 10%);">
         <div  class="card-avatar"><a  href="javascript:void(0)"><img
                class="avatar" src="{{datauser?.Foto}}"></a></div>
         <div  class="card-body">
@@ -17,9 +17,9 @@
             <mat-list-item><strong>Carnet</strong>:{{datauser?.CI}}</mat-list-item>
             <mat-divider></mat-divider>
             <mat-list-item> <mat-card-actions>
-              <button mat-raised-button color="warn" (click)="editar(datauser?.CI)"><span class="material-icons">
+              <!-- <button mat-raised-button color="warn" (click)="editar(datauser?.CI)"><span class="material-icons">
                 edit
-                </span> Editar</button>
+                </span> Editar</button> -->
             </mat-card-actions></mat-list-item>
           </mat-list>
         </div>

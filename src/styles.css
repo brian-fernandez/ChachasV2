@@ -2,3 +2,30 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+    background-color: #ff9800;
+}
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
+    background-color: #000000;
+}
+body::-webkit-scrollbar
+{
+  width: 10px;
+  background-color: #ff9800 !important;
+}
+
+*::-webkit-scrollbar-button
+{
+  width: 50px !important;
+  background-color: rgb(255, 0, 0) !important;
+}
+*::-webkit-scrollbar-corner
+{
+    width: 50px !important;
+    background-color: black !important;
+}
+*::-webkit-scrollbar-thumb
+{
+  width: 50px;
+  background-color: rgb(38, 1, 87);
+}

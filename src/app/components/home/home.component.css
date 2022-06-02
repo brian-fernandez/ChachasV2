@@ -1,3 +1,9 @@
+.bg
+{
+  background-image: url(../../../assets/imagenes/bg-pixel.jpg);
+  background-size: cover;
+}
+
 .example-container {
   height: 90%;
   overflow: auto;
@@ -69,4 +75,18 @@ table {
 {
   display: flex;
   align-items: center;
+}
+.example-card:hover
+{
+  animation: top 1s forwards;
+}
+@keyframes top
+{
+  0%{
+
+  }
+  100%
+  {
+    transform: translateY(-5px);
+  }
 }
