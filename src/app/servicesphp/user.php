@@ -95,6 +95,21 @@ class Pelicula extends DB{
        
     }
 
+    function detallecliente($id)
+    {
+        
+        $query = $this->connect()->prepare('SELECT r.Fecha_reserva as fecha, r.Reserva_info as info, r.mesaid as mesa, r.total as total from cliente c join reservas r on (c.idcliente = r.idcliente) where r.idcliente = :id');
+        $query->execute(['id' => $id]);
+      
+        if ($query->rowCount()) {
+            return $query;
+            
+        }else{
+            return false;
+        }
+  
+    }
+
    /* PRODUCTOS */
 
    function obtenercantidadproducto()

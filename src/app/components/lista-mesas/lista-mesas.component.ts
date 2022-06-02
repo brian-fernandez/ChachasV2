@@ -57,7 +57,7 @@ export class ListaMesasComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        console.log('hola');
+      window.location.reload();
         
     
     }

@@ -370,8 +370,20 @@ getUsers(): Observable<any> {
       })
     );
   }
-  
+  getdetallcliente(id:any):Observable<any>
+  {
+    var body = 'id='+ id  +'';
+    return this.http.post(this.path+'cliente.php?opcion=detalle',body, this.httpOptions2).pipe(
+      tap((data: any) =>  {
 
+       
+        return of(data);
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+    );
+  }
   lista(id:any,cantidad:any,costo:any,nombre:any)
   {
     // let totalPriceProducto = (Math.round(total * 100) / 100).toFixed(2);

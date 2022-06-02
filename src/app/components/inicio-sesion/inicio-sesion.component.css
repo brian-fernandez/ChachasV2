@@ -7,6 +7,15 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.bg
+{
+    background-image: url(../../../assets/imagenes/login-bg.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    filter: blur(2px);
+}
+
 html,
 body {
     height: 100%;
@@ -20,6 +29,7 @@ body {
 }
 
 .app-header {
+    background: linear-gradient(60deg, #ffa726, #fb8c00);
     justify-content: space-between;
     position: fixed;
     top: 0;
@@ -58,7 +68,7 @@ body {
 
 .child {
     position: absolute;
-    top: 50%;
+    top: -50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -70,6 +80,16 @@ body {
     top: -20px;
     opacity: 0.8;
     z-index: -1;
+}
+button{
+    border: none;
+    padding: 10px;
+    background: #73f772;
+    border-radius: 10px;
+}
+button:hover
+{
+    background: #45d445;
 }
 
 .box:before {

@@ -9,6 +9,7 @@ import { ListaReservasComponent } from './components/lista-reservas/lista-reserv
 import { ListaMesasComponent } from './components/lista-mesas/lista-mesas.component';
 import { ListaClienteComponent } from './components/lista-cliente/lista-cliente.component';
 import { ListaProductoComponent } from './components/lista-producto/lista-producto.component';
+import { ListaUsuariosComponent } from './components/lista-usuarios/lista-usuarios.component';
 
 
 
@@ -23,6 +24,7 @@ const routes: Routes = [
       {path: 'lista-mesa', component: ListaMesasComponent, canActivate:[AuthGuard]},
       {path: 'lista-cliente', component: ListaClienteComponent, canActivate:[AuthGuard]},
       {path: 'lista-producto', component: ListaProductoComponent, canActivate:[AuthGuard]},
+      {path: 'lista-usuarios', component: ListaUsuariosComponent, canActivate:[AuthGuard]},
       // {path: 'restaurante/:idproducto', component: RestaurantComponent},
       // {path: 'restaurante', component:RestaurantComponent},
       // {path: 'habitacion', component:RoomsComponent},

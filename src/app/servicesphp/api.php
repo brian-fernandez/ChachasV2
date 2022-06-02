@@ -603,6 +603,38 @@ function getidclient($id){
         echo json_encode(array('mensaje' => 'No hay elementos'));
     }
 }
+function detalleclienteid($id){
+       
+    $pelicula = new Pelicula();
+    $peliculas = array();
+    $peliculas["items"] = array();
+    $ci = $id['id'];
+
+
+ 
+    $res = $pelicula->detallecliente($ci);
+    
+    if($res){
+
+        while ( $row = $res->fetch( ) ) {
+            $item=array(
+                "fecha" => $row['fecha'],
+                "info" => $row['info'],
+                "mesa" => $row['mesa'],
+                "total" => $row['total'],
+
+                
+            );
+            
+            array_push($peliculas["items"], $item);
+    }
+    return  $this->printJSON($peliculas);
+      
+    }else{
+        echo json_encode(array('mensaje' => 'No hay elementos'));
+    }
+}
+
 /*mensajes*/ 
 
 

@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ServicesService } from 'src/app/service/services.service';
+import { detalleclientecomponent } from './detallecliente';
 
 
 export interface PeriodicElement {
@@ -64,18 +65,16 @@ export class ListaClienteComponent implements OnInit {
   }
 
   detalle(ids: any) {
-   this.lista =  JSON.parse(ids.informacion)    
-    // const dialogRef = this.dialog.open(verdetallecomponent, {
+   
+    const dialogRef = this.dialog.open(detalleclientecomponent, {
       
-    //   width: '70%', height:'600px',
-    //   data: {
+      width: '70%', height:'600px',
+      data: {
         
-    //     id:this.lista,
-    //     total:ids.total,
-    //     fecha:ids.Fecha
+        id:ids.idcliente
       
-    //   },
-    // });
+      },
+    });
 
   }
 

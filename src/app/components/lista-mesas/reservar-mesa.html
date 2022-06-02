@@ -98,7 +98,7 @@
                     <div>
             
                        
-                       <form [formGroup]="lg">
+                      
                         <mat-form-field appearance="fill">
                             <mat-label>Nombre</mat-label>
                             <mat-select  (selectionChange)="onChange($event.value)"  formControlName="Nombre" >
@@ -115,7 +115,7 @@
                               <mat-option  value=5>5</mat-option>
                             </mat-select>
                           </mat-form-field>
-                       </form>
+                      
                        
                       
                     </div>
@@ -159,7 +159,7 @@
                     <h1>{{totalultimo}}Bs.</h1>
                 </div>
                 <div> 
-                    <button mat-raised-button color="primary" (click)="reservar()">Primary</button>
+                    <button mat-raised-button color="primary" (click)="reservar()">Reservar Pedido!</button>
                 </div>
             </div>
         </div>

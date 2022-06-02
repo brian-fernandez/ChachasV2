@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { ListaClienteRoutingModule } from './lista-cliente-routing.module';
 import { ListaClienteComponent } from './lista-cliente.component';
 import { nuevoclientecomponent } from './nuevlo-cliente';
+import { detalleclientecomponent } from './detallecliente';
 
 
 @NgModule({
   declarations: [
     ListaClienteComponent,
-    nuevoclientecomponent
+    nuevoclientecomponent,
+    detalleclientecomponent
   ],
   imports: [
     CommonModule,

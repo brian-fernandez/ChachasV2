@@ -124,7 +124,7 @@ export class reservarmesacomponete {
     onNoClick(): void {
         this.dialogRef.close();
         this.lista = this.service.eliminarlistatotal();
-        
+        this.lista = false;
         this.totalultimo = false;
 
     }
@@ -211,13 +211,22 @@ export class reservarmesacomponete {
     }
     anadirlista() {
 
-
-
-        this.service.lista(this.idproducto, this.seleccioncantidad, this.costo, this.nombre);
+        if (this.lg.dirty && this.lg.valid) {
+            this.service.lista(this.idproducto, this.seleccioncantidad, this.costo, this.nombre);
 
         this.lista = this.service.retornarlista();
 
         this.totalultimo = this.service.getTotalBill();
+        }else{
+            this._snackBar.open('No puede añadir campos vacios', 'Close', {
+                duration: 5000,
+                verticalPosition: 'bottom',
+                horizontalPosition: 'start'
+              });
+            
+        }
+
+        
 
 
     }
@@ -238,7 +247,7 @@ export class reservarmesacomponete {
                 this.lista = this.service.eliminarlistatotal();
                 
                 this.reservarmesa();
-                
+                window.location.reload();
                 this.onNoClick();
 
                 console.table(this.registro);

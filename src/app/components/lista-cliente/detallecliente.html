@@ -1,0 +1,43 @@
+<div class="container">
+    <div *ngIf="datadetalle; else el" class="row">
+        
+        <div *ngFor="let detalle of datadetalle">
+            <div class="col-sm-12" style="background-color: black;padding: 5px;color: aliceblue;">{{detalle.fecha}}
+            </div>
+            <div class="">
+                <div>
+                    <div class="row">
+                        <div class="col-sm-12" style="display: flex;justify-content: space-between;">
+                            <p>Nombre</p>
+                            <p>Cantidad</p>
+                            <p>Costo unitario</p>
+                            <p>Costo total</p>
+                        </div>
+                        <div *ngFor="let info of detalle.info" class="col-sm-12"
+                            style="display: flex;justify-content: space-between;">
+                            <p>{{info.nombre}}</p>
+                            <p>{{info.cantidad}}</p>
+                            <p>{{info.costo}}bs</p>
+                            <p>{{info.total}}bs</p>
+                        </div>
+                        <div class="col-sm-12"
+                            style="padding: 5px; background: linear-gradient(60deg, #ffa726, #fb8c00); display: flex;justify-content: flex-end;">
+                           Total: {{detalle.total}}bs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #el>
+        <div class="container">
+            <div class="" style="display: flex;
+            margin: auto;
+            justify-content: space-around;
+            justify-items: center;flex-wrap: wrap;">
+            <h1 style="font-size:3rem ;color: #afb4b9;">No hay ventas realizadas</h1>
+            <img style="filter: opacity(0.5);" src="../../../assets/imagenes/bg-chacha.png" width="500px" alt="">
+        </div>
+        </div>
+    </ng-template>
+</div>

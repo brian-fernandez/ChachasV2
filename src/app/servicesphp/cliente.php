@@ -50,7 +50,16 @@ if (isset($_GET['opcion'])) {
                 $res = $api->getidclient($item);
             }
             break;
-        
+        case 'detalle':
+            if (isset($_POST['id'])) {
+              
+                $item = array(
+                    'id' =>$_POST['id'],
+     
+                );
+                $res = $api->detalleclienteid($item);
+            }
+            break;
         default:
             # code...
             break;
