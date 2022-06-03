@@ -66,6 +66,10 @@
             
         </div>
         <div *ngIf="datauser.Cargo == 'Empleado'">
+            <button mat-button [routerLinkActive]="['class1']" routerLink="/home" class="menu-button">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+            </button>
             <button mat-button [routerLinkActive]="['class1']" routerLink="/panel" class="menu-button">
                 <mat-icon>person</mat-icon>
                 <span>Cuenta</span>
